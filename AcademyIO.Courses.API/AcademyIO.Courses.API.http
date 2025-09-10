@@ -1,0 +1,6 @@
+@AcademyIO.Courses.API_HostAddress = http://localhost:5077
+
+GET {{AcademyIO.Courses.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
