@@ -5,21 +5,22 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+
 namespace AcademyIO.Payments.API.Data;
 
 public class PaymentsContext(DbContextOptions<PaymentsContext> options, IMediator mediator) : DbContext(options), IUnitOfWork
 {
-    protected override void OnModelCreating(ModelBuilder builder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        builder.ApplyConfiguration(new PaymentConfiguration());
-        builder.ApplyConfiguration(new TransactionConfiguration());
+        modelBuilder.ApplyConfiguration(new PaymentConfiguration());
+        modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
-        foreach (var relationShip in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+        foreach (var relationShip in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
         {
             relationShip.DeleteBehavior = DeleteBehavior.ClientSetNull;
         }
 
-        base.OnModelCreating(builder);
+        base.OnModelCreating(modelBuilder);
     }
     public async Task<bool> Commit()
     {
