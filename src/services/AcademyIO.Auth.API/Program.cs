@@ -1,4 +1,17 @@
+using AcademyIO.Auth.API.Configuration;
+using AcademyIO.WebAPI.Core.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddLogger(builder.Configuration);
+
+builder.Services.AddIdentityConfiguration(builder.Configuration);
+
+builder.Services.AddApiConfiguration(builder.Configuration);
+
+builder.Services.AddSwaggerConfiguration();
+
+builder.Services.AddMessageBusConfiguration(builder.Configuration);
 
 // Add services to the container.
 
@@ -9,17 +22,11 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//DbMigrationHelpers.EnsureSeedData(app).Wait();
 
-app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseSwaggerSetup();
 
-app.MapControllers();
+app.UseApiConfiguration(app.Environment);
 
 app.Run();
