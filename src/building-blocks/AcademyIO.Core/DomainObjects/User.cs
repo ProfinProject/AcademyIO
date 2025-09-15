@@ -2,7 +2,7 @@
 
 namespace AcademyIO.Core.Models
 {
-    public class User : Entity
+    public class User : Entity, IAggregateRoot
     {
         public User()
         {

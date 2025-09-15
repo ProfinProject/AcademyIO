@@ -1,11 +1,16 @@
+using AcademyIO.Core.Enums;
+using AcademyIO.Courses.API.Configuration;
+using AcademyIO.WebAPI.Core.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddJwtConfiguration(builder.Configuration);
+
+builder.AddContext(EDatabases.SQLite)
+    .AddRepositories()
+    .AddServices()
+    .AddSwaggerConfiguration();
 
 var app = builder.Build();
 
@@ -18,8 +23,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseAuthConfiguration();
 
 app.MapControllers();
+app.UseDbMigrationHelper();
 
 app.Run();
+
+public partial class Program { }
