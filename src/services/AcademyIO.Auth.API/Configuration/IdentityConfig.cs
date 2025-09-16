@@ -13,7 +13,7 @@ namespace AcademyIO.Auth.API.Configuration
         public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.ConfigureProviderForContext<ApplicationDbContext>(DetectDatabase(configuration));
+            services.ConfigureProviderForContext<ApplicationDbContext>(DetectDatabase(configuration), "AcademyIO.Auth.API");
 
             services.AddMemoryCache()
                 .AddDataProtection();
