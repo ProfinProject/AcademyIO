@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyIO.WebAPI.Core", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyIO.Auth.API", "src\services\AcademyIO.Auth.API\AcademyIO.Auth.API.csproj", "{911A696A-64CB-4143-97FA-6EF2321F2B03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyIO.Payments.API", "src\services\AcademyIO.Payments.API\AcademyIO.Payments.API.csproj", "{B3903B8E-2925-47D5-881A-1B14766229F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +67,6 @@ Global
 		{B8920B51-4D2D-8590-6DEC-1970F89EFEC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8920B51-4D2D-8590-6DEC-1970F89EFEC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8920B51-4D2D-8590-6DEC-1970F89EFEC3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{911A696A-64CB-4143-97FA-6EF2321F2B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{911A696A-64CB-4143-97FA-6EF2321F2B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{911A696A-64CB-4143-97FA-6EF2321F2B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{911A696A-64CB-4143-97FA-6EF2321F2B03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,7 +84,6 @@ Global
 		{A78D3868-8281-4B18-98D8-A973FE27217D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{2D4C5773-F2E7-4B04-8F12-46156D856B69} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B8920B51-4D2D-8590-6DEC-1970F89EFEC3} = {2D4C5773-F2E7-4B04-8F12-46156D856B69}
-		{911A696A-64CB-4143-97FA-6EF2321F2B03} = {64FDA4BD-9A2A-4E8B-88DF-5287C31345E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E41895A6-62E2-44CE-A53D-4A1DBA16DD78}
