@@ -12,25 +12,28 @@ public class ProviderConfiguration
 
     private readonly string _connectionString;
 
-    public ProviderConfiguration(string connString)
+    private readonly string _migrationAssembly;
+
+    public ProviderConfiguration(string connString, string migrationAssembly = null)
     {
         _connectionString = connString;
+        _migrationAssembly = migrationAssembly ?? typeof(ProviderConfiguration).GetTypeInfo().Assembly.GetName().Name;
     }
 
     public Action<DbContextOptionsBuilder> SqlServer =>
-        options => options.UseSqlServer(_connectionString, sql => sql.MigrationsAssembly(MigrationAssembly));
-   
+        options => options.UseSqlServer(_connectionString, sql => sql.MigrationsAssembly(_migrationAssembly));
+
     public Action<DbContextOptionsBuilder> Sqlite =>
-        options => options.UseSqlite(_connectionString, sql => sql.MigrationsAssembly(MigrationAssembly));
+        options => options.UseSqlite(_connectionString, sql => sql.MigrationsAssembly(_migrationAssembly));
 
     public ProviderConfiguration With()
     {
         return this;
     }
 
-    public static ProviderConfiguration Build(string connString)
+    public static ProviderConfiguration Build(string connString, string migrationAssembly = null)
     {
-        return new ProviderConfiguration(connString);
+        return new ProviderConfiguration(connString, migrationAssembly);
     }
 
 
