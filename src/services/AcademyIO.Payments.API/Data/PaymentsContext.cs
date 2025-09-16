@@ -4,6 +4,7 @@ using AcademyIO.Payments.API.Business;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using AcademyIO.ManagementStudents.Data;
 
 
 namespace AcademyIO.Payments.API.Data;

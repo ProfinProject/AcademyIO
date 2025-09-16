@@ -2,12 +2,13 @@ using AcademyIO.Payments.API.Data;
 using AcademyIO.Payments.API.Business;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using AcademyIO.WebAPI.Core.Controllers;
 
 namespace AcademyIO.Payments.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PaymentsController : ControllerBase
+public class PaymentsController : MainController
 {
     private readonly PaymentsContext _context;
 
