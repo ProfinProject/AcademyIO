@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using AcademyIO.ManagementStudents.Data;
+using AcademyIO.Core.Messages;
 
 namespace AcademyIO.Courses.API.Data
 {
@@ -22,6 +23,7 @@ namespace AcademyIO.Courses.API.Data
             modelBuilder.ApplyConfiguration(new CourseConfiguration());
             modelBuilder.ApplyConfiguration(new LessonConfiguration());
             modelBuilder.ApplyConfiguration(new ProgressLessonsConfiguration());
+            modelBuilder.Ignore<Event>();
         }
 
         public async Task<bool> Commit()

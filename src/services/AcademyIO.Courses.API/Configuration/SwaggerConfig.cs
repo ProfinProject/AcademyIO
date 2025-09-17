@@ -5,13 +5,13 @@ namespace AcademyIO.Courses.API.Configuration
 {
     public static class SwaggerConfig
     {
-        public static WebApplicationBuilder AddSwaggerConfiguration(this WebApplicationBuilder builder)
+        public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
         {
-            if (builder == null) throw new ArgumentNullException(nameof(builder));
+            if (services == null) throw new ArgumentNullException(nameof(services));
 
-            builder.Services.AddEndpointsApiExplorer();
+            services.AddEndpointsApiExplorer();
 
-            builder.Services.AddSwaggerGen(s =>
+            services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
@@ -48,7 +48,7 @@ namespace AcademyIO.Courses.API.Configuration
                 });
             });
 
-            return builder;
+            return services;
         }
 
         public static IApplicationBuilder UseSwaggerSetup(this IApplicationBuilder app)

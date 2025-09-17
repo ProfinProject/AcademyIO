@@ -4,38 +4,38 @@ using AcademyIO.Courses.API.Application.Commands;
 using AcademyIO.Courses.API.Application.Queries;
 using AcademyIO.Courses.API.Data.Repository;
 using AcademyIO.Courses.API.Models;
+using AcademyIO.WebAPI.Core.Identity;
 using AcademyIO.WebAPI.Core.User;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace AcademyIO.Courses.API.Configuration
 {
     public static class ServicesConfiguration
     {
-        public static WebApplicationBuilder AddRepositories(this WebApplicationBuilder builder)
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
-            builder.Services.AddScoped<ILessonRepository, LessonRepository>();            
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ILessonRepository, LessonRepository>();            
 
-            return builder;
+            return services;
         }
 
-        public static WebApplicationBuilder AddServices(this WebApplicationBuilder builder)
+        public static IServiceCollection AddServices(this IServiceCollection services)
         {
             
-            builder.Services.AddScoped<INotifier, Notifier>();
-
-            builder.Services.AddScoped<ICourseQuery, CourseQuery>();
-            builder.Services.AddScoped<ILessonQuery, LessonQuery>();            
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddLessonCommand>());
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<StartLessonCommand>());
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<FinishLessonCommand>());
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddCourseCommand>());
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreateProgressByCourseCommand>());
+            services.AddScoped<INotifier, Notifier>();
             
-            builder.Services.AddHttpContextAccessor();
-            builder.Services.AddScoped<IAspNetUser, AspNetUser>();
+            services.AddScoped<ICourseQuery, CourseQuery>();
+            services.AddScoped<ILessonQuery, LessonQuery>();            
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddLessonCommand>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<StartLessonCommand>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<FinishLessonCommand>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddCourseCommand>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreateProgressByCourseCommand>());
+            
+            services.AddHttpContextAccessor();
+            services.AddScoped<IAspNetUser, AspNetUser>();
 
-            return builder;
+            return services;
         }
     }
 }

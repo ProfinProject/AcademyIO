@@ -1,33 +1,23 @@
-using AcademyIO.Core.Enums;
+using AcademyIO.WebAPI.Core.Configuration;
 using AcademyIO.Courses.API.Configuration;
-using AcademyIO.WebAPI.Core.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddJwtConfiguration(builder.Configuration);
+builder.Services.AddLogger(builder.Configuration);
+builder.Services.AddApiCoreConfiguration(builder.Configuration);
+builder.Services.AddContext(builder.Configuration);
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+builder.Services.AddSwaggerConfiguration();
 
-builder.AddContext(EDatabases.SQLite)
-    .AddRepositories()
-    .AddServices()
-    .AddSwaggerConfiguration();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwaggerSetup();
+app.UseApiCoreConfiguration(app.Environment);
 
-app.UseHttpsRedirection();
-
-app.UseAuthConfiguration();
-
-app.MapControllers();
 app.UseDbMigrationHelper();
 
 app.Run();
-
-public partial class Program { }

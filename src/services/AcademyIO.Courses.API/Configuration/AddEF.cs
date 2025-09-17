@@ -1,35 +1,20 @@
-﻿using AcademyIO.Core.Enums;
-using AcademyIO.Courses.API.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using AcademyIO.Courses.API.Data;
+using AcademyIO.WebAPI.Core.DatabaseFlavor;
+using static AcademyIO.WebAPI.Core.DatabaseFlavor.ProviderConfiguration;
 
 namespace AcademyIO.Courses.API.Configuration
 {
     public static class AddEF
     {
-        public static WebApplicationBuilder AddContext(this WebApplicationBuilder builder, EDatabases databases)
+        public static IServiceCollection AddContext(this IServiceCollection services,
+            IConfiguration configuration)
         {
-            switch (databases)
-            {
-                case EDatabases.SQLServer:
-                    builder.Services.AddDbContext<CoursesContext>(opt =>
-                    {
-                        opt.UseSqlServer(builder.Configuration.GetConnectionString("SQLServer"));
-                    });
-                    break;
+            services.ConfigureProviderForContext<CoursesContext>(DetectDatabase(configuration), "AcademyIO.Courses.API");
 
-                case EDatabases.SQLite:
-                    builder.Services.AddDbContext<CoursesContext>(opt =>
-                    {
-                        opt.UseSqlite(builder.Configuration.GetConnectionString("SQLite"));
-                    });                    
-                    break;
+            services.AddMemoryCache()
+                .AddDataProtection();
 
-                default:
-                    throw new ArgumentException($"Banco de dados {databases} não suportado.");
-            }
-
-            return builder;
+            return services;
         }
     }
 }
