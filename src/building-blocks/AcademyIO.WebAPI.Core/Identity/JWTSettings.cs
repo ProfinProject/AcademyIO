@@ -1,4 +1,4 @@
-﻿namespace AcademyIO.Auth.API.Extensions
+﻿namespace AcademyIO.WebAPI.Core.Identity
 {
     public class JwtSettings
     {
