@@ -1,11 +1,14 @@
 using AcademyIO.Auth.API.Configuration;
 using AcademyIO.WebAPI.Core.Configuration;
+using AcademyIO.WebAPI.Core.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddLogger(builder.Configuration);
 
 builder.Services.AddIdentityConfiguration(builder.Configuration);
+
+builder.Services.AddJwtConfiguration(builder.Configuration);    
 
 builder.Services.AddApiConfiguration(builder.Configuration);
 
@@ -22,11 +25,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-//DbMigrationHelpers.EnsureSeedData(app).Wait();
-
 
 app.UseSwaggerSetup();
 
 app.UseApiConfiguration(app.Environment);
+
+
+app.UseDbMigrationHelper();
 
 app.Run();

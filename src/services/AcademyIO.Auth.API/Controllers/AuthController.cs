@@ -1,6 +1,6 @@
-﻿using AcademyIO.Auth.API.Extensions;
-using AcademyIO.Core.Interfaces.Integration;
+﻿using AcademyIO.Core.Interfaces.Integration;
 using AcademyIO.WebAPI.Core.Controllers;
+using AcademyIO.WebAPI.Core.Identity;
 using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

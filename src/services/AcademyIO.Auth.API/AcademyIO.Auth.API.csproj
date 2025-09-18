@@ -30,4 +30,8 @@
 		<ProjectReference Include="..\..\building-blocks\AcademyIO.WebAPI.Core\AcademyIO.WebAPI.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Extensions\" />
+	</ItemGroup>
+
 </Project>
