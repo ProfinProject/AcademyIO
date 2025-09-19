@@ -1,13 +1,8 @@
-﻿//using AcademyIO.Core.Interfaces.Services;
-//using AcademyIO.ManagementCourses.Application.Commands;
-//using AcademyIO.ManagementCourses.Application.Queries;
-//using AcademyIO.ManagementPayments.Application.Query;
-//using AcademyIO.ManagementStudents.Aplication.Commands;
-//using MediatR;
-using AcademyIO.Core.Interfaces.Services;
+﻿using AcademyIO.Core.Interfaces.Services;
+using AcademyIO.ManagementStudents.Application.Commands;
 using AcademyIO.WebAPI.Core.Controllers;
+using AcademyIO.WebAPI.Core.User;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -18,6 +13,7 @@ namespace FabianoIO.API.Controllers
     public class StudentController(IMediator _mediator,
                                 //ICourseQuery courseQuery,
                                 //IPaymentQuery paymentQuery,
+                                IAspNetUser user,
                                 INotifier notifier) : MainController()
     {
         /// <summary>
@@ -25,23 +21,23 @@ namespace FabianoIO.API.Controllers
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns>Se o curso existe e o aluno já pagou o curso, retorna 201 aluno registrado</returns>
-        [Authorize(Roles = "STUDENT")]
         [HttpPost("register-to-course/{courseId:guid}")]
         public async Task<IActionResult> RegisterToCourse(Guid courseId)
         {
+            var userId = user.GetUserId();
             //var course = await courseQuery.GetById(courseId);
             //if (course == null)
             //    return NotFound("Curso não encontrado.");
 
-            //var paymentExists = await paymentQuery.PaymentExists(UserId, courseId);
+            //var paymentExists = await paymentQuery.PaymentExists(userId, courseId);
             //if (!paymentExists)
-                return UnprocessableEntity("Você não possui acesso a esse curso.");
+            //    return UnprocessableEntity("Você não possui acesso a esse curso.");
 
-            //var commandRegistration = new AddRegistrationCommand(UserId, courseId);
-            //await _mediator.Send(commandRegistration);
+            var commandRegistration = new AddRegistrationCommand(userId, courseId);
+            await _mediator.Send(commandRegistration);
 
-           // var commandCreationProgress = new CreateProgressByCourseCommand(courseId, UserId);
-           // await _mediator.Send(commandCreationProgress);
+            //var commandCreationProgress = new CreateProgressByCourseCommand(courseId, userId);
+            //await _mediator.Send(commandCreationProgress);
 
             return CustomResponse(HttpStatusCode.Created);
         }
@@ -51,25 +47,12 @@ namespace FabianoIO.API.Controllers
         /// </summary>
         /// <param name="courseId"></param>
         /// <returns>Se o curso existe e o aluno já pagou o curso, retorna 201 aluno registrado</returns>
-        [Authorize(Roles = "STUDENT")]
-        [HttpGet("register-to-course/{courseId:guid}")]
+        [HttpGet("get-registration/{courseId:guid}")]
         public async Task<IActionResult> GetRegistration(Guid courseId)
         {
-            //var course = await courseQuery.GetById(courseId);
-            //if (course == null)
-            //    return NotFound("Curso não encontrado.");
-
-            //var paymentExists = await paymentQuery.PaymentExists(UserId, courseId);
-            //if (!paymentExists)
-            //    return UnprocessableEntity("Você não possui acesso a esse curso.");
-
-           // var commandRegistration = new AddRegistrationCommand(UserId, courseId);
-           // await _mediator.Send(commandRegistration);
-
-            //var commandCreationProgress = new CreateProgressByCourseCommand(courseId, UserId);
-            //await _mediator.Send(commandCreationProgress);
-
-            return CustomResponse(HttpStatusCode.Created);
+            //to do get registration FABIANO
+            
+            return CustomResponse(HttpStatusCode.OK);
         }
     }
 }

@@ -1,0 +1,6 @@
+@AcademyIO.Bff_HostAddress = http://localhost:5018
+
+GET {{AcademyIO.Bff_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
