@@ -29,17 +29,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademyIO.Students.API", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademyIO.Courses.API", "src\services\AcademyIO.Courses.API\AcademyIO.Courses.API.csproj", "{94B0852F-614A-4994-B819-2D3E5EBBA72A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyIO.MessageBus", "src\building-blocks\AcademyIO.MessageBus\AcademyIO.MessageBus.csproj", "{1B744A57-9C8F-6783-FCB2-07B1477AAC5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademyIO.MessageBus", "src\building-blocks\AcademyIO.MessageBus\AcademyIO.MessageBus.csproj", "{1B744A57-9C8F-6783-FCB2-07B1477AAC5B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageBus", "MessageBus", "{A78D3868-8281-4B18-98D8-A973FE27217D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{2D4C5773-F2E7-4B04-8F12-46156D856B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyIO.WebAPI.Core", "src\building-blocks\AcademyIO.WebAPI.Core\AcademyIO.WebAPI.Core.csproj", "{B8920B51-4D2D-8590-6DEC-1970F89EFEC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademyIO.WebAPI.Core", "src\building-blocks\AcademyIO.WebAPI.Core\AcademyIO.WebAPI.Core.csproj", "{B8920B51-4D2D-8590-6DEC-1970F89EFEC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyIO.Auth.API", "src\services\AcademyIO.Auth.API\AcademyIO.Auth.API.csproj", "{911A696A-64CB-4143-97FA-6EF2321F2B03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademyIO.Auth.API", "src\services\AcademyIO.Auth.API\AcademyIO.Auth.API.csproj", "{911A696A-64CB-4143-97FA-6EF2321F2B03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyIO.Payments.API", "src\services\AcademyIO.Payments.API\AcademyIO.Payments.API.csproj", "{B3903B8E-2925-47D5-881A-1B14766229F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademyIO.Payments.API", "src\services\AcademyIO.Payments.API\AcademyIO.Payments.API.csproj", "{B3903B8E-2925-47D5-881A-1B14766229F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyIO.Bff", "AcademyIO.Bff\AcademyIO.Bff.csproj", "{D5CE032B-F968-4E2E-83FA-1BE0A5064BA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{B3903B8E-2925-47D5-881A-1B14766229F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3903B8E-2925-47D5-881A-1B14766229F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3903B8E-2925-47D5-881A-1B14766229F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CE032B-F968-4E2E-83FA-1BE0A5064BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CE032B-F968-4E2E-83FA-1BE0A5064BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CE032B-F968-4E2E-83FA-1BE0A5064BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CE032B-F968-4E2E-83FA-1BE0A5064BA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{B8920B51-4D2D-8590-6DEC-1970F89EFEC3} = {2D4C5773-F2E7-4B04-8F12-46156D856B69}
 		{911A696A-64CB-4143-97FA-6EF2321F2B03} = {64FDA4BD-9A2A-4E8B-88DF-5287C31345E5}
 		{B3903B8E-2925-47D5-881A-1B14766229F9} = {A3505243-AB29-475E-BAFC-1E19BCE46EA2}
+		{D5CE032B-F968-4E2E-83FA-1BE0A5064BA2} = {C9BA4A2E-251D-4E44-9DE6-988A9DE5EA47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E41895A6-62E2-44CE-A53D-4A1DBA16DD78}

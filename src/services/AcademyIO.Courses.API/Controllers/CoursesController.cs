@@ -39,7 +39,7 @@ namespace AcademyIO.Courses.API.Controllers
         [AllowAnonymous]
         [HttpGet("{id:guid}")]
         [ProducesResponseType(typeof(CourseViewModel), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<CourseViewModel>>> GetById(Guid id)
+        public async Task<ActionResult<CourseViewModel>> GetById(Guid id)
         {
             var course = await courseQuery.GetById(id);
             return CustomResponse(course);
