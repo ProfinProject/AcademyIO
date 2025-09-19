@@ -1,16 +1,16 @@
 ﻿using AcademyIO.Bff.Extensions;
-using AcademyIO.Bff.Models;
+using AcademyIO.Core.Communication;
 using Microsoft.Extensions.Options;
 
 namespace AcademyIO.Bff.Services
 {
     public interface IStudentService
     {
-        
+        Task<ResponseResult> RegisterToCourse(Guid courseId);
     }
 
 
-    public class StudentService : IStudentService
+    public class StudentService : Service, IStudentService
     {
         private readonly HttpClient _httpClient;
 
@@ -20,5 +20,13 @@ namespace AcademyIO.Bff.Services
             _httpClient.BaseAddress = new Uri(settings.Value.StudentUrl);
         }
 
+        public async Task<ResponseResult> RegisterToCourse(Guid courseId)
+        {
+            var response = await _httpClient.PostAsync($"register-to-course/{courseId}", null);
+
+            if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
+
+            return Ok();
+        }
     }
 }

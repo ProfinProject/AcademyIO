@@ -1,9 +1,7 @@
-﻿using System.Net;
-using System.Net.Http;
+﻿using AcademyIO.Core.Communication;
+using System.Net;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using AcademyIO.Core.Communication;
 
 namespace AcademyIO.Bff.Services
 {
@@ -33,6 +31,11 @@ namespace AcademyIO.Bff.Services
 
             Response.EnsureSuccessStatusCode();
             return true;
+        }
+
+        protected ResponseResult Ok()
+        {
+            return new ResponseResult();
         }
     }
 }
