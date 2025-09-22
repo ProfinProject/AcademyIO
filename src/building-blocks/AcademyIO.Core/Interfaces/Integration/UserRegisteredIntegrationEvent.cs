@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AcademyIO.Core.Messages.Integration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AcademyIO.Core.Interfaces.Integration
 {
-    public class UserRegisteredIntegrationEvent
+    public class UserRegisteredIntegrationEvent : IntegrationEvent
     {
         public string Email { get; private set; }
         public bool IsAdmin { get; private set; }

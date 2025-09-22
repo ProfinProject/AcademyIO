@@ -2,26 +2,25 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <Compile Remove="Application\Events\**" />
-	  <Compile Remove="Services\**" />
 	  <Content Remove="Application\Events\**" />
-	  <Content Remove="Services\**" />
 	  <EmbeddedResource Remove="Application\Events\**" />
-	  <EmbeddedResource Remove="Services\**" />
 	  <None Remove="Application\Events\**" />
-	  <None Remove="Services\**" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.20" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\..\building-blocks\AcademyIO.Core\AcademyIO.Core.csproj" />
+	  <ProjectReference Include="..\..\building-blocks\AcademyIO.MessageBus\AcademyIO.MessageBus.csproj" />
 	  <ProjectReference Include="..\..\building-blocks\AcademyIO.WebAPI.Core\AcademyIO.WebAPI.Core.csproj" />
 	</ItemGroup>
 

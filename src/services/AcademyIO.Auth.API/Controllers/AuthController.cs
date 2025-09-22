@@ -1,15 +1,16 @@
 ﻿using AcademyIO.Core.Interfaces.Integration;
+using AcademyIO.Core.Messages.Integration;
+using AcademyIO.MessageBus;
 using AcademyIO.WebAPI.Core.Controllers;
 using AcademyIO.WebAPI.Core.Identity;
-using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using NetDevPack.Messaging;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using static AcademyIO.API.ViewModel.UserViewModel;
+
 
 namespace AcademyIO.Auth.API.Controllers
 {
@@ -17,7 +18,7 @@ namespace AcademyIO.Auth.API.Controllers
 
     public class AuthController : MainController
     {
-        private readonly IBus _bus;
+        private readonly IMessageBus _bus;
         private readonly JwtSettings _jwtSettings;
         private readonly SignInManager<IdentityUser<Guid>> _signInManager;
         private readonly UserManager<IdentityUser<Guid>> _userManager;
@@ -26,7 +27,7 @@ namespace AcademyIO.Auth.API.Controllers
             JwtSettings jwtSettings,
             SignInManager<IdentityUser<Guid>> signInManager,
             UserManager<IdentityUser<Guid>> userManager,
-            IBus bus)
+            IMessageBus bus)
         {
             _jwtSettings = jwtSettings;
             _signInManager = signInManager;
@@ -104,13 +105,11 @@ namespace AcademyIO.Auth.API.Controllers
             var user = await _userManager.FindByEmailAsync(registerUser.Email);
             ArgumentNullException.ThrowIfNull(user);
 
-            var userRegistered =
-                new UserRegisteredIntegrationEvent(registerUser.Email, registerUser.IsAdmin, registerUser.FirstName, registerUser.LastName, registerUser.DateOfBirth);
+            var userRegistered = new UserRegisteredIntegrationEvent(registerUser.Email, registerUser.IsAdmin, registerUser.FirstName, registerUser.LastName, registerUser.DateOfBirth);
 
             try
             {
-                var response = await _bus.Request<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
-                return response.Message;
+                return await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
             }
             catch (Exception)
             {
