@@ -1,6 +1,6 @@
 ﻿using AcademyIO.Core.Interfaces.Integration;
 using AcademyIO.Core.Messages.Integration;
-using AcademyIO.ManagementStudents.Application.Commands;
+using AcademyIO.Students.API.Application.Commands;
 using AcademyIO.MessageBus;
 using FluentValidation.Results;
 using MediatR;
@@ -28,7 +28,7 @@ namespace NSE.Clientes.API.Services
         private void SetResponder()
         {
             _bus.RespondAsync<UserRegisteredIntegrationEvent, ResponseMessage>(async request =>
-                await RegistrarEstudante(request));
+                await RegisterStudent(request));
 
             _bus.AdvancedBus.Connected += OnConnect;
         }
@@ -44,7 +44,7 @@ namespace NSE.Clientes.API.Services
             SetResponder();
         }
 
-        private async Task<ResponseMessage> RegistrarEstudante(UserRegisteredIntegrationEvent message)
+        private async Task<ResponseMessage> RegisterStudent(UserRegisteredIntegrationEvent message)
         {
             //Todo: Verificar os dados que vem da mensagem para criação do usuário.
             var estudanteCommand = new AddUserCommand(message.FirstName, false, message.LastName, message.FirstName, DateTime.Now, message.Email);

@@ -1,10 +1,10 @@
 ﻿using AcademyIO.Core.Messages;
 using AcademyIO.Core.Messages.Notifications;
-using AcademyIO.ManagementStudents.Application.Commands;
-using AcademyIO.ManagementStudents.Models;
+using AcademyIO.Students.API.Application.Commands;
+using AcademyIO.Students.API.Models;
 using MediatR;
 
-namespace FabianoIO.ManagementStudents.Application.Handler;
+namespace FabianoIO.Students.API.Application.Handler;
 
 public class RegistrationCommandHandler(IMediator _mediator,
                                         IRegistrationRepository _registrationRepository,
