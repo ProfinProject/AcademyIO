@@ -1,4 +1,4 @@
-﻿namespace AcademyIO.ManagementStudents.Models
+﻿namespace AcademyIO.Students.API.Models
 {
     public enum RegistrationStatus
     {

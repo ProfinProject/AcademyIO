@@ -1,19 +1,19 @@
-﻿using AcademyIO.ManagementStudents.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using AcademyIO.Core.Data;
+using AcademyIO.Core.Messages;
+using AcademyIO.Students.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using AcademyIO.Core.Data;
-using AcademyIO.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AcademyIO.ManagementStudents.Data
+namespace AcademyIO.Students.API.Data
 {
     public class StudentsContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>, IUnitOfWork
     {
         public StudentsContext(DbContextOptions<StudentsContext> options) : base(options) { }
 
-        public DbSet<User> SystemUsers { get; set; }
+        public DbSet<StudentUser> SystemUsers { get; set; }
 
         public DbSet<Certification> Certifications { get; set; }
 
@@ -23,7 +23,9 @@ namespace AcademyIO.ManagementStudents.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.Ignore<Event>();
+
+            modelBuilder.ApplyConfiguration(new StudentUserConfiguration());
             modelBuilder.ApplyConfiguration(new RegistrationConfiguration());
             modelBuilder.ApplyConfiguration(new CertificationConfiguration());
         }
@@ -45,12 +47,12 @@ namespace AcademyIO.ManagementStudents.Data
             return await base.SaveChangesAsync() > 0;
         }
     }
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class StudentUserConfiguration : IEntityTypeConfiguration<StudentUser>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<StudentUser> builder)
         {
             builder.HasKey(a => a.Id);
-            builder.ToTable("Users");
+            builder.ToTable("StudentUsers");
         }
     }
 
