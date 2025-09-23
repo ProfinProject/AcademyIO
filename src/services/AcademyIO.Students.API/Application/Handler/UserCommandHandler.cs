@@ -1,6 +1,7 @@
 ﻿using AcademyIO.Core.DomainObjects;
 using AcademyIO.Core.Messages;
 using AcademyIO.Core.Messages.Notifications;
+using AcademyIO.Core.Models;
 using AcademyIO.Students.API.Application.Commands;
 using AcademyIO.Students.API.Models;
 using MediatR;
@@ -15,7 +16,7 @@ namespace AcademyIO.Students.API.Application.Handler
             if (!ValidateCommand(request))
                 return false;
 
-            var user = new User(new Guid(), request.Name, request.LastName, request.Email, request.DateOfBirth);
+            var user = new StudentUser(new Guid(), request.UserName, request.Name, request.LastName, request.Email, request.DateOfBirth, false);
 
             userRepository.Add(user);
             return await userRepository.UnitOfWork.Commit();

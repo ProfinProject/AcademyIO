@@ -13,7 +13,7 @@ namespace AcademyIO.Students.API.Data
     {
         public StudentsContext(DbContextOptions<StudentsContext> options) : base(options) { }
 
-        public DbSet<User> SystemUsers { get; set; }
+        public DbSet<StudentUser> SystemUsers { get; set; }
 
         public DbSet<Certification> Certifications { get; set; }
 
@@ -23,7 +23,9 @@ namespace AcademyIO.Students.API.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.Ignore<Event>();
+
+            modelBuilder.ApplyConfiguration(new StudentUserConfiguration());
             modelBuilder.ApplyConfiguration(new RegistrationConfiguration());
             modelBuilder.ApplyConfiguration(new CertificationConfiguration());
         }
@@ -45,12 +47,12 @@ namespace AcademyIO.Students.API.Data
             return await base.SaveChangesAsync() > 0;
         }
     }
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class StudentUserConfiguration : IEntityTypeConfiguration<StudentUser>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<StudentUser> builder)
         {
             builder.HasKey(a => a.Id);
-            builder.ToTable("Users");
+            builder.ToTable("StudentUsers");
         }
     }
 

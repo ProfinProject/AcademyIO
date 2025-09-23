@@ -3,12 +3,12 @@ using AcademyIO.Core.DomainObjects;
 
 namespace AcademyIO.Students.API.Models
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<StudentUser>
     {
-        Task<IEnumerable<User>> GetStudents();
-        Task<IEnumerable<User>> GetAllUsers();
-        Task<User> GetById(Guid id);
-        void Add(User user);
-        Task<User> GetByEmail(string email);
+        Task<IEnumerable<StudentUser>> GetStudents();
+        Task<IEnumerable<StudentUser>> GetAllUsers();
+        Task<StudentUser> GetById(Guid id);
+        void Add(StudentUser user);
+        Task<StudentUser> GetByEmail(string email);
     }
 }
