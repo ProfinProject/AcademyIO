@@ -2,7 +2,10 @@
 using AcademyIO.WebAPI.Core.Configuration;
 using AcademyIO.WebAPI.Core.DatabaseFlavor;
 using AcademyIO.WebAPI.Core.Identity;
+using AcademyIO.MessageBus;
+using AcademyIO.Core.Utils;
 using static AcademyIO.WebAPI.Core.DatabaseFlavor.ProviderConfiguration;
+using NSE.Clientes.API.Services;
 
 namespace AcademyIO.Students.API.Configuration
 {
@@ -50,6 +53,12 @@ namespace AcademyIO.Students.API.Configuration
 
             app.MapControllers();
 
+        }
+
+        public static void AddMessageBusConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddMessageBus(configuration.GetMessageQueueConnection("MessageBus"))
+                    .AddHostedService<RegistroEstudanteIntegrationHandler>();
         }
     }
 }
