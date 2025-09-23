@@ -75,6 +75,52 @@ Migração do Banco: Gerenciada pelo EF Core, com Seed de dados automático.
 📜 **Documentação da API**  
 A API está documentada via Swagger: 📌 Acesse em: http://localhost:5005/swagger
 
+📬 Mensageria — Setup com Docker, Portainer e RabbitMQ
+✅ Pré-requisitos
+
+🐳 Docker Desktop para Windows (com WSL2 habilitado)
+Download: https://www.docker.com/products/docker-desktop/
+
+🧭 (Opcional) Portainer — painel para gerenciar containers
+
+O que é? 🖥️ O Portainer é um painel web para administrar o Docker: criar/gerenciar containers, imagens, volumes e redes, visualizar logs e status — ótimo para acompanhar o RabbitMQ em desenvolvimento.
+
+💠 PowerShell
+docker stop portainer 2>$null
+docker rm portainer 2>$null
+docker volume create portainer_data
+docker run -d `
+  -p 8000:8000 `
+  -p 9443:9443 `
+  --name portainer `
+  --restart=always `
+  -v /var/run/docker.sock:/var/run/docker.sock `
+  -v portainer_data:/data `
+  portainer/portainer-ce:latest
+
+🧱 CMD (uma linha)
+docker stop portainer >nul 2>&1 && docker rm portainer >nul 2>&1 && docker volume create portainer_data && docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+
+🌐 Acesse: https://localhost:9443
+
+🔐 No primeiro acesso, crie o usuário admin. Senha sugerida: Portainer1234! (altere fora do ambiente local).
+
+🐰 RabbitMQ — broker de mensagens (com painel)
+
+O que é? 📨 O RabbitMQ é um message broker (AMQP). Ele recebe mensagens em exchanges, roteia para filas e permite que consumidores as processem de forma assíncrona. A imagem rabbitmq:management inclui o painel web.
+
+▶️ Subir o container
+docker run -d --hostname rabbit-host --name rabbit-academyio -p 15672:15672 -p 5672:5672 rabbitmq:management
+
+
+📊 Painel (Management): http://localhost:15672/
+
+🔑 login: guest — senha: guest
+
+🔌 Conexão AMQP (aplicação): amqp://guest:guest@localhost:5672/
+
+⚠️ Produção: crie um usuário próprio e evite guest/guest.
 
 📌 **Considerações Finais** 
 Este projeto faz parte de um curso acadêmico e não aceita contribuições externas. Para dúvidas ou feedbacks, utilize a aba Issues do repositório. O arquivo FEEDBACK.md contém avaliações do instrutor e deve ser modificado apenas por ele.
