@@ -1,7 +1,7 @@
 ﻿using AcademyIO.Core.Messages;
 using FluentValidation;
 
-namespace AcademyIO.ManagementStudents.Application.Commands
+namespace AcademyIO.Students.API.Application.Commands
 {
     public class AddUserCommand : Command
     {

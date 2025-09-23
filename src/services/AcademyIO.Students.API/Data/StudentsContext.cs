@@ -1,13 +1,13 @@
-﻿using AcademyIO.ManagementStudents.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using AcademyIO.Core.Data;
-using AcademyIO.Core.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using AcademyIO.Core.DomainObjects;
+using AcademyIO.Students.API.Models;
 
-namespace AcademyIO.ManagementStudents.Data
+namespace AcademyIO.Students.API.Data
 {
     public class StudentsContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>, IUnitOfWork
     {

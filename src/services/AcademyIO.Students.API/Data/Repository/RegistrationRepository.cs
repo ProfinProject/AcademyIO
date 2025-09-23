@@ -1,9 +1,9 @@
 ﻿using AcademyIO.Core.Data;
 using AcademyIO.Core.Enums;
-using AcademyIO.ManagementStudents.Models;
+using AcademyIO.Students.API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AcademyIO.ManagementStudents.Data.Repository
+namespace AcademyIO.Students.API.Data.Repository
 {
     public class RegistrationRepository(StudentsContext db) : IRegistrationRepository
     {

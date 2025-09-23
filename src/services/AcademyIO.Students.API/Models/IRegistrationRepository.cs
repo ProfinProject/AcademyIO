@@ -1,7 +1,7 @@
 ﻿using AcademyIO.Core.Data;
-using AcademyIO.Core.Models;
+using AcademyIO.Core.DomainObjects;
 
-namespace AcademyIO.ManagementStudents.Models
+namespace AcademyIO.Students.API.Models
 {
     public interface IRegistrationRepository : IRepository<User>
     {

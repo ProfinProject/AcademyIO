@@ -1,10 +1,10 @@
-﻿using AcademyIO.ManagementStudents.Data;
+﻿using AcademyIO.Students.API.Data;
 using AcademyIO.WebAPI.Core.Configuration;
 using AcademyIO.WebAPI.Core.DatabaseFlavor;
 using AcademyIO.WebAPI.Core.Identity;
 using static AcademyIO.WebAPI.Core.DatabaseFlavor.ProviderConfiguration;
 
-namespace AcademyIO.Customers.API.Configuration
+namespace AcademyIO.Students.API.Configuration
 {
     public static class ApiConfig
     {

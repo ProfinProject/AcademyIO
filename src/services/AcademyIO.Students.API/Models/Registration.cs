@@ -1,9 +1,7 @@
 ﻿using AcademyIO.Core.Enums;
-using AcademyIO.Core.Models;
 using AcademyIO.Core.DomainObjects;
-using AcademyIO.Core.Enums;
 
-namespace AcademyIO.ManagementStudents.Models
+namespace AcademyIO.Students.API.Models
 {
     public class Registration : Entity
     {

@@ -1,9 +1,9 @@
-﻿using AcademyIO.Core.Models;
-using AcademyIO.Core.Data;
-using AcademyIO.ManagementStudents.Models;
+﻿using AcademyIO.Core.Data;
 using Microsoft.EntityFrameworkCore;
+using AcademyIO.Core.DomainObjects;
+using AcademyIO.Students.API.Models;
 
-namespace AcademyIO.ManagementStudents.Data.Repository
+namespace AcademyIO.Students.API.Data.Repository
 {
     public class UserRepository(StudentsContext db) : IUserRepository
     {

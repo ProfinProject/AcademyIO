@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using AcademyIO.Core.Messages;
 
-namespace AcademyIO.ManagementStudents.Application.Commands;
+namespace AcademyIO.Students.API.Application.Commands;
 
 public class AddRegistrationCommand(Guid studentId, Guid courseId) : Command
 {

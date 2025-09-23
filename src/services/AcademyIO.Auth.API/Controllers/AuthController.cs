@@ -9,7 +9,7 @@ using NetDevPack.Messaging;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using static AcademyIO.API.ViewModel.UserViewModel;
+using static AcademyIO.Auth.API.Models.UserViewModel;
 
 namespace AcademyIO.Auth.API.Controllers
 {
@@ -201,5 +201,5 @@ namespace AcademyIO.Auth.API.Controllers
         private static long ToUnixEpochDate(DateTime date)
          => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
     }
-    
+
 }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using AcademyIO.Core.DomainObjects;
 
-namespace AcademyIO.ManagementStudents.Data;
+namespace AcademyIO.Core.Extensions;
 
 public static class MediatorExtension
 {

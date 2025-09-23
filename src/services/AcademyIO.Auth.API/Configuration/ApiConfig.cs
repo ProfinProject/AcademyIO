@@ -1,5 +1,4 @@
 ﻿using AcademyIO.WebAPI.Core.Configuration;
-using AcademyIO.WebAPI.Core.Identity;
 using AcademyIO.WebAPI.Core.User;
 
 namespace AcademyIO.Auth.API.Configuration

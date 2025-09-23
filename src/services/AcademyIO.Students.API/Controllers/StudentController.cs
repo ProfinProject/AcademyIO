@@ -1,12 +1,12 @@
 ﻿using AcademyIO.Core.Interfaces.Services;
-using AcademyIO.ManagementStudents.Application.Commands;
+using AcademyIO.Students.API.Application.Commands;
 using AcademyIO.WebAPI.Core.Controllers;
 using AcademyIO.WebAPI.Core.User;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace FabianoIO.API.Controllers
+namespace AcademyIO.Students.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -51,7 +51,7 @@ namespace FabianoIO.API.Controllers
         public async Task<IActionResult> GetRegistration(Guid courseId)
         {
             //to do get registration FABIANO
-            
+
             return CustomResponse(HttpStatusCode.OK);
         }
     }

@@ -4,8 +4,8 @@ using AcademyIO.Courses.API.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using AcademyIO.ManagementStudents.Data;
 using AcademyIO.Core.Messages;
+using AcademyIO.Core.Extensions;
 
 namespace AcademyIO.Courses.API.Data
 {

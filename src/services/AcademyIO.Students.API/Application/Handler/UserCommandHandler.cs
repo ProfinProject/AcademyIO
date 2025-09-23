@@ -1,11 +1,11 @@
-﻿using AcademyIO.Core.Messages;
+﻿using AcademyIO.Core.DomainObjects;
+using AcademyIO.Core.Messages;
 using AcademyIO.Core.Messages.Notifications;
-using AcademyIO.Core.Models;
-using AcademyIO.ManagementStudents.Application.Commands;
-using AcademyIO.ManagementStudents.Models;
+using AcademyIO.Students.API.Application.Commands;
+using AcademyIO.Students.API.Models;
 using MediatR;
 
-namespace FabianoIO.ManagementStudents.Application.Handler
+namespace AcademyIO.Students.API.Application.Handler
 {
     public class UserCommandHandler(IMediator mediator
                                    , IUserRepository userRepository) : IRequestHandler<AddUserCommand, bool>

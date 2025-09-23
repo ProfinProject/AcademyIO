@@ -1,8 +1,6 @@
 ﻿using AcademyIO.Bff.Services;
-using AcademyIO.Core.Models;
 using AcademyIO.WebAPI.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace AcademyIO.Bff.Controllers
 {
