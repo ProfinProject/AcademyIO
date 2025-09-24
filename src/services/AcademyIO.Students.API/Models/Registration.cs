@@ -9,7 +9,7 @@ namespace AcademyIO.Students.API.Models
         public Guid CourseId { get; set; }
         public DateTime RegistrationTime { get; set; }
         public EProgressLesson Status { get; set; }
-        public User Student { get; set; }
+        public StudentUser Student { get; set; }
 
         public Registration(Guid studentId, Guid courseId, DateTime registrationTime)
         {

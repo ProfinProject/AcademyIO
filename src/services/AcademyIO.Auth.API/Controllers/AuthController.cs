@@ -105,11 +105,11 @@ namespace AcademyIO.Auth.API.Controllers
             var user = await _userManager.FindByEmailAsync(registerUser.Email);
             ArgumentNullException.ThrowIfNull(user);
 
-            var userRegistered = new UserRegisteredIntegrationEvent(registerUser.Email, registerUser.IsAdmin, registerUser.FirstName, registerUser.LastName, registerUser.DateOfBirth);
+            var userRegistered = new Core.Interfaces.Integration.UserRegisteredIntegrationEvent(registerUser.Email, registerUser.IsAdmin, registerUser.FirstName, registerUser.LastName, registerUser.DateOfBirth);
 
             try
             {
-                return await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
+                return await _bus.RequestAsync<Core.Interfaces.Integration.UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
             }
             catch (Exception)
             {

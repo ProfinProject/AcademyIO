@@ -16,7 +16,7 @@ namespace AcademyIO.Students.API.Data.Repository
 
         public async Task<StudentUser> GetByEmail(string email)
         {
-            return await db.SystemUsers.FirstOrDefaultAsync(u => u.Email == email);
+            return await db.StudentUsers.FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public Task<IEnumerable<StudentUser>> GetStudents()
@@ -26,7 +26,7 @@ namespace AcademyIO.Students.API.Data.Repository
 
         public async Task<StudentUser> GetById(Guid id)
         {
-            return await db.SystemUsers.FirstOrDefaultAsync(u => u.Id == id);
+            return await db.StudentUsers.FirstOrDefaultAsync(u => u.Id == id);
         }
 
         public void Add(StudentUser user)

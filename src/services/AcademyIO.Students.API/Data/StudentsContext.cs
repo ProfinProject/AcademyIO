@@ -9,11 +9,11 @@ using AcademyIO.Core.Messages;
 
 namespace AcademyIO.Students.API.Data
 {
-    public class StudentsContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>, IUnitOfWork
+    public class StudentsContext : DbContext, IUnitOfWork
     {
         public StudentsContext(DbContextOptions<StudentsContext> options) : base(options) { }
 
-        public DbSet<StudentUser> SystemUsers { get; set; }
+        public DbSet<StudentUser> StudentUsers { get; set; }
 
         public DbSet<Certification> Certifications { get; set; }
 

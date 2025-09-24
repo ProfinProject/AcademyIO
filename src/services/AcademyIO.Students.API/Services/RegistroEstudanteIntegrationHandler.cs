@@ -27,7 +27,7 @@ namespace AcademyIO.Students.API.Services
 
         private void SetResponder()
         {
-            _bus.RespondAsync<UserRegisteredIntegrationEvent, ResponseMessage>(async request =>
+            _bus.RespondAsync<Core.Interfaces.Integration.UserRegisteredIntegrationEvent, ResponseMessage>(async request =>
                 await RegisterStudent(request));
 
             _bus.AdvancedBus.Connected += OnConnect;
@@ -44,7 +44,7 @@ namespace AcademyIO.Students.API.Services
             SetResponder();
         }
 
-        private async Task<ResponseMessage> RegisterStudent(UserRegisteredIntegrationEvent message)
+        private async Task<ResponseMessage> RegisterStudent(Core.Interfaces.Integration.UserRegisteredIntegrationEvent message)
         {
             //Todo: Verificar os dados que vem da mensagem para criação do usuário.
             var estudanteCommand = new AddUserCommand(message.FirstName, false, message.LastName, message.FirstName, DateTime.Now, message.Email);
