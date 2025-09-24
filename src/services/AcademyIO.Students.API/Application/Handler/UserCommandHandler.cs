@@ -1,7 +1,5 @@
-﻿using AcademyIO.Core.DomainObjects;
-using AcademyIO.Core.Messages;
+﻿using AcademyIO.Core.Messages;
 using AcademyIO.Core.Messages.Notifications;
-using AcademyIO.Core.Models;
 using AcademyIO.Students.API.Application.Commands;
 using AcademyIO.Students.API.Models;
 using MediatR;

@@ -28,16 +28,16 @@ namespace AcademyIO.Courses.API.Configuration
             var courseContext = scope.ServiceProvider.GetRequiredService<CoursesContext>();
 
             if (env.IsDevelopment())
-            {                
+            {
                 await courseContext.Database.MigrateAsync();
                 await EnsureSeedData(courseContext);
             }
         }
 
         private static async Task EnsureSeedData(CoursesContext courseContext)
-        {   
+        {
             await SeedCourses(courseContext);
-            await SeedLessons(courseContext);            
+            await SeedLessons(courseContext);
         }
 
         public static async Task SeedCourses(CoursesContext context)

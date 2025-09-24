@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using AcademyIO.Core.Data;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using AcademyIO.Core.DomainObjects;
 using AcademyIO.Students.API.Models;
+using AcademyIO.Core.Messages;
 
 namespace AcademyIO.Students.API.Data
 {

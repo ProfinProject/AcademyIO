@@ -13,9 +13,9 @@ public class PaymentRepository(PaymentsContext context) : IPaymentRepository
         _dbSet.Add(payment);
     }
 
-    public void AddTransaction(BusinessTransaction transaction)
+    public void AddTransaction(Transaction transaction)
     {
-        context.Set<BusinessTransaction>().Add(transaction);
+        context.Set<Transaction>().Add(transaction);
     }
 
     public async Task<bool> PaymentExists(Guid studentId, Guid courseId)

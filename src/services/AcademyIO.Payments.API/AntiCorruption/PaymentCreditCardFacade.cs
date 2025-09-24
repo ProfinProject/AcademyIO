@@ -7,7 +7,7 @@ public class PaymentCreditCardFacade(IPayPalGateway payPalGateway,
     IOptions<PaymentSettings> options) : IPaymentCreditCardFacade
 {
     private readonly PaymentSettings _settings = options.Value;
-    public BusinessTransaction MakePayment(Payment payment)
+    public Transaction MakePayment(Payment payment)
     {
         var apiKey = _settings.ApiKey;
         var encriptionKey = _settings.EncriptionKey;

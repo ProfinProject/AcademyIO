@@ -1,25 +1,23 @@
+using AcademyIO.Payments.API.Configuration;
+using AcademyIO.WebAPI.Core.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddLogger(builder.Configuration);
+builder.Services.AddApiCoreConfiguration(builder.Configuration);
+builder.Services.AddContext(builder.Configuration);
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+builder.Services.AddSwaggerConfiguration();
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+app.UseSwaggerSetup();
+app.UseApiCoreConfiguration(app.Environment);
+app.UseDbMigrationHelper();
 
 app.Run();

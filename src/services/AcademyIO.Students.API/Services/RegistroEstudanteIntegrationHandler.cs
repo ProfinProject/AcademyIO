@@ -10,7 +10,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NSE.Clientes.API.Services
+namespace AcademyIO.Students.API.Services
 {
     public class RegistroEstudanteIntegrationHandler : BackgroundService
     {
