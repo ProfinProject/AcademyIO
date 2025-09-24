@@ -1,10 +1,12 @@
 using AcademyIO.WebAPI.Core.Configuration;
 using AcademyIO.Courses.API.Configuration;
+using AcademyIO.WebAPI.Core.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddLogger(builder.Configuration);
 builder.Services.AddApiCoreConfiguration(builder.Configuration);
+builder.Services.AddJwtConfiguration(builder.Configuration);
 builder.Services.AddContext(builder.Configuration);
 builder.Services.AddRepositories();
 builder.Services.AddServices();
