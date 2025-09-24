@@ -1,4 +1,5 @@
 ﻿using AcademyIO.Auth.API.Data;
+using AcademyIO.Core.Utils;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,6 +39,10 @@ namespace AcademyIO.Auth.API.Configuration
         {
             if (contextIdentity.Users.Any()) return;
 
+            var admin = SeedStudentUserData.Users.FirstOrDefault(a => a.IsAdmin)!;
+            var student1 = SeedStudentUserData.Users.FirstOrDefault(a => a.FirstName.Equals("Student1"))!;
+            var student2 = SeedStudentUserData.Users.FirstOrDefault(a => a.FirstName.Equals("Student2"))!;
+
             #region ADMIN SEED
             var ADMIN_ROLE_ID = Guid.NewGuid();
             await contextIdentity.Roles.AddAsync(new IdentityRole<Guid>
@@ -57,76 +62,71 @@ namespace AcademyIO.Auth.API.Configuration
                 ConcurrencyStamp = STUDENT_ROLE_ID.ToString()
             });
 
-            var ADMIN_ID = Guid.NewGuid();
             var adminUser = new IdentityUser<Guid>
             {
-                Id = ADMIN_ID,
-                Email = "admin@academyio.com",
+                Id = admin.Id,
+                Email = admin.Email,
                 EmailConfirmed = true,
-                UserName = "admin@academyio.com",
-                NormalizedUserName = "admin@academyio.com".ToUpper(),
-                NormalizedEmail = "admin@academyio.com".ToUpper(),
+                UserName = admin.Email,
+                NormalizedUserName = admin.Email.ToUpper(),
+                NormalizedEmail = admin.Email.ToUpper(),
                 LockoutEnabled = true,
                 SecurityStamp = ADMIN_ROLE_ID.ToString(),
             };
 
             //set user password
             PasswordHasher<IdentityUser<Guid>> ph = new PasswordHasher<IdentityUser<Guid>>();
-            adminUser.PasswordHash = ph.HashPassword(adminUser, "Teste@123");
+            adminUser.PasswordHash = ph.HashPassword(adminUser, admin.Password);
             await contextIdentity.Users.AddAsync(adminUser);
-
 
             await contextIdentity.UserRoles.AddAsync(new IdentityUserRole<Guid>
             {
                 RoleId = ADMIN_ROLE_ID,
-                UserId = ADMIN_ID
+                UserId = admin.Id
             });
 
             #endregion
 
             #region NON-ADMIN USERS SEED
-            var user1Id = Guid.NewGuid();
             var user1 = new IdentityUser<Guid>
             {
-                Id = user1Id,
-                Email = "aluno1@academyio.com",
+                Id = student1.Id,
+                Email = student1.Email,
                 EmailConfirmed = true,
-                UserName = "aluno1@academyio.com",
-                NormalizedUserName = "aluno1@academyio.com".ToUpper(),
-                NormalizedEmail = "aluno1@academyio.com".ToUpper(),
+                UserName = student1.Email,
+                NormalizedUserName = student1.Email.ToUpper(),
+                NormalizedEmail = student1.Email.ToUpper(),
                 LockoutEnabled = true,
-                SecurityStamp = user1Id.ToString(),
+                SecurityStamp = student1.Id.ToString(),
             };
-            user1.PasswordHash = ph.HashPassword(user1, "Teste@123");
+
+            user1.PasswordHash = ph.HashPassword(user1, student1.Password);
             await contextIdentity.Users.AddAsync(user1);
 
-
-
-            var user2Id = Guid.NewGuid();
             var user2 = new IdentityUser<Guid>
             {
-                Id = user2Id,
-                Email = "aluno2@academyio.com",
+                Id = student2.Id,
+                Email = student2.Email,
                 EmailConfirmed = true,
-                UserName = "aluno2@academyio.com",
-                NormalizedUserName = "aluno2@academyio.com".ToUpper(),
-                NormalizedEmail = "aluno2@academyio.com".ToUpper(),
+                UserName = student2.Email,
+                NormalizedUserName = student2.Email.ToUpper(),
+                NormalizedEmail = student2.Email.ToUpper(),
                 LockoutEnabled = true,
-                SecurityStamp = user2Id.ToString(),
+                SecurityStamp = student2.Email.ToString(),
             };
-            user2.PasswordHash = ph.HashPassword(user2, "Teste@123");
+            user2.PasswordHash = ph.HashPassword(user2, student2.Password);
             await contextIdentity.Users.AddAsync(user2);
 
             await contextIdentity.UserRoles.AddAsync(new IdentityUserRole<Guid>
             {
                 RoleId = STUDENT_ROLE_ID,
-                UserId = user1Id
+                UserId = student1.Id
             });
 
             await contextIdentity.UserRoles.AddAsync(new IdentityUserRole<Guid>
             {
                 RoleId = STUDENT_ROLE_ID,
-                UserId = user2Id
+                UserId = student2.Id
             });
 
             await contextIdentity.SaveChangesAsync();

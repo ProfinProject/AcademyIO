@@ -6,6 +6,6 @@ namespace AcademyIO.Students.API.Models
     {
         public Guid CourseId { get; set; }
         public Guid StudentId { get; set; }
-        public User? Student { get; private set; }
+        public StudentUser? Student { get; private set; }
     }
 }
