@@ -50,4 +50,13 @@ public class PaymentsController : MainController
         await _context.Commit();
         return NoContent();
     }
+
+
+    [HttpGet("exists")]
+    public async Task<ActionResult<bool>> PaymentExists(Guid studentId, Guid courseId)
+    {
+        var exists = await _context.Set<Payment>().AnyAsync(p => p.StudentId == studentId && p.CourseId == courseId && !p.Deleted);
+        return Ok(exists);
+    }
+
 }

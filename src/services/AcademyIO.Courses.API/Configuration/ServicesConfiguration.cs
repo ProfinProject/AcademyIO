@@ -4,7 +4,6 @@ using AcademyIO.Courses.API.Application.Commands;
 using AcademyIO.Courses.API.Application.Queries;
 using AcademyIO.Courses.API.Data.Repository;
 using AcademyIO.Courses.API.Models;
-using AcademyIO.WebAPI.Core.Identity;
 using AcademyIO.WebAPI.Core.User;
 
 namespace AcademyIO.Courses.API.Configuration

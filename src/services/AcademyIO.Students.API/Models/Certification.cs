@@ -1,5 +1,4 @@
-﻿using AcademyIO.Core.Models;
-using AcademyIO.Core.DomainObjects;
+﻿using AcademyIO.Core.DomainObjects;
 
 namespace AcademyIO.Students.API.Models
 {

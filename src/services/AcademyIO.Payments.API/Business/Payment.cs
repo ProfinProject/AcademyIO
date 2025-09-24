@@ -11,5 +11,5 @@ public class Payment : Entity, IAggregateRoot
     public string CardNumber { get; set; }
     public string CardExpirationDate { get; set; }
     public string CardCVV { get; set; }
-    public BusinessTransaction Transaction { get; set; }
+    public Transaction Transaction { get; set; }
 }

@@ -1,29 +1,24 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace AcademyIO.Courses.API.Configuration
+namespace AcademyIO.Payments.API.Configuration
 {
     public static class SwaggerConfig
     {
-        public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
+        public static void AddSwaggerConfiguration(this IServiceCollection services)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
-
-            services.AddEndpointsApiExplorer();
-
-            services.AddSwaggerGen(s =>
+            services.AddSwaggerGen(c =>
             {
-                s.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Version = "v1",
-                    Title = "Academy IO",
-                    Description = "AcademyIO Swagger",
-                    Contact = new OpenApiContact { Name = "Academy IO Team", Email = "admin@AcademyIO.com" },
-                    License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://github.com/ProfinProject/AcademyIO") }
+                    Title = "NerdStore Enterprise Pagamentos API",
+                    Description = "Esta API faz parte do curso ASP.NET Core Enterprise Applications.",
+                    Contact = new OpenApiContact() { Name = "Eduardo Pires", Email = "contato@desenvolvedor.io" },
+                    License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
                 });
 
-                s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "Input the JWT like: Bearer {your token}",
+                    Description = "Insira o token JWT desta maneira: Bearer {seu token}",
                     Name = "Authorization",
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
@@ -31,7 +26,7 @@ namespace AcademyIO.Courses.API.Configuration
                     Type = SecuritySchemeType.ApiKey
                 });
 
-                s.AddSecurityRequirement(new OpenApiSecurityRequirement
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
                         new OpenApiSecurityScheme
@@ -45,9 +40,8 @@ namespace AcademyIO.Courses.API.Configuration
                         new string[] {}
                     }
                 });
-            });
 
-            return services;
+            });
         }
 
         public static IApplicationBuilder UseSwaggerSetup(this IApplicationBuilder app)

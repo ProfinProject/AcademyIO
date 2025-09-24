@@ -1,6 +1,4 @@
-﻿using AcademyIO.Core.DomainObjects;
-
-namespace AcademyIO.Core.Models
+﻿namespace AcademyIO.Core.DomainObjects
 {
     public class User : Entity, IAggregateRoot
     {

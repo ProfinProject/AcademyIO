@@ -4,7 +4,7 @@ using AcademyIO.Students.API.Application.Commands;
 using AcademyIO.Students.API.Models;
 using MediatR;
 
-namespace FabianoIO.Students.API.Application.Handler;
+namespace AcademyIO.Students.API.Application.Handler;
 
 public class RegistrationCommandHandler(IMediator _mediator,
                                         IRegistrationRepository _registrationRepository,

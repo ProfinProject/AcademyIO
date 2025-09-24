@@ -2,5 +2,5 @@
 
 public interface IPaymentCreditCardFacade
 {
-    BusinessTransaction MakePayment(Payment payment);
+    Transaction MakePayment(Payment payment);
 }

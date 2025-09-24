@@ -1,11 +1,11 @@
-﻿using AcademyIO.Core.Data;
-using AcademyIO.Core.Messages;
-using AcademyIO.Students.API.Models;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using AcademyIO.Core.Data;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using AcademyIO.Students.API.Models;
+using AcademyIO.Core.Messages;
 
 namespace AcademyIO.Students.API.Data
 {

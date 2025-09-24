@@ -14,10 +14,10 @@ public class PayPalGateway : IPayPalGateway
         return new string([.. Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 10).Select(s => s[new Random().Next(s.Length)])]);
     }
 
-    public BusinessTransaction CommitTransaction(string cardHashKey, string orderId, double amount)
+    public Transaction CommitTransaction(string cardHashKey, string orderId, double amount)
     {
         var sucesso = true;
-        return new BusinessTransaction
+        return new Transaction
         {
             RegistrationId = Guid.Parse(orderId),
             Total = amount,

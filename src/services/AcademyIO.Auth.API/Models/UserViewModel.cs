@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AcademyIO.API.ViewModel
+namespace AcademyIO.Auth.API.Models
 {
     public class UserViewModel
     {

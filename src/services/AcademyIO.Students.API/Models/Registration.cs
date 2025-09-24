@@ -1,7 +1,5 @@
 ﻿using AcademyIO.Core.Enums;
-using AcademyIO.Core.Models;
 using AcademyIO.Core.DomainObjects;
-using AcademyIO.Core.Enums;
 
 namespace AcademyIO.Students.API.Models
 {

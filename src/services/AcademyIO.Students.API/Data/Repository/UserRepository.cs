@@ -1,4 +1,3 @@
-﻿using AcademyIO.Core.Models;
 using AcademyIO.Core.Data;
 using AcademyIO.Students.API.Models;
 using Microsoft.EntityFrameworkCore;

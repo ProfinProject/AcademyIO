@@ -51,7 +51,7 @@ namespace AcademyIO.Students.API.Controllers
         public async Task<IActionResult> GetRegistration(Guid courseId)
         {
             //to do get registration FABIANO
-            
+
             return CustomResponse(HttpStatusCode.OK);
         }
     }
