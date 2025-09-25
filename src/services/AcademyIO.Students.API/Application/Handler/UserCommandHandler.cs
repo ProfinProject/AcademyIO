@@ -14,7 +14,7 @@ namespace AcademyIO.Students.API.Application.Handler
             if (!ValidateCommand(request))
                 return false;
 
-            var user = new StudentUser(new Guid(), request.UserName, request.Name, request.LastName, request.Email, request.DateOfBirth, false);
+            var user = new StudentUser(request.UserId, request.UserName, request.Name, request.LastName, request.Email, request.DateOfBirth, request.IsAdmin);
 
             userRepository.Add(user);
             return await userRepository.UnitOfWork.Commit();

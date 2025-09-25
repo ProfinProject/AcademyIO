@@ -3,6 +3,7 @@ using AcademyIO.Core.Notifications;
 using AcademyIO.Students.API.Application.Commands;
 using AcademyIO.Students.API.Data.Repository;
 using AcademyIO.Students.API.Models;
+using AcademyIO.Students.API.Services;
 using AcademyIO.WebAPI.Core.User;
 
 namespace AcademyIO.Students.API.Configuration
@@ -23,7 +24,7 @@ namespace AcademyIO.Students.API.Configuration
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddRegistrationCommand>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddUserCommand>());
-
+            services.AddHostedService<UserRegisteredIntegrationHandler>();
             services.AddHttpContextAccessor();
             services.AddScoped<IAspNetUser, AspNetUser>();
 

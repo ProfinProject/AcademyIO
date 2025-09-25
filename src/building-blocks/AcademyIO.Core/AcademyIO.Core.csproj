@@ -17,4 +17,8 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.4" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Interfaces\Integration\" />
+	</ItemGroup>
+
 </Project>
