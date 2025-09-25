@@ -1,23 +1,17 @@
-﻿using AcademyIO.Core.Interfaces.Integration;
-using AcademyIO.Core.Messages.Integration;
-using AcademyIO.Students.API.Application.Commands;
+﻿using AcademyIO.Core.Messages.Integration;
 using AcademyIO.MessageBus;
+using AcademyIO.Students.API.Application.Commands;
 using FluentValidation.Results;
 using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace AcademyIO.Students.API.Services
 {
-    public class RegistroEstudanteIntegrationHandler : BackgroundService
+    public class UserRegisteredIntegrationHandler : BackgroundService
     {
         private readonly IMessageBus _bus;
         private readonly IServiceProvider _serviceProvider;
 
-        public RegistroEstudanteIntegrationHandler(
+        public UserRegisteredIntegrationHandler(
                             IServiceProvider serviceProvider,
                             IMessageBus bus)
         {
@@ -27,7 +21,7 @@ namespace AcademyIO.Students.API.Services
 
         private void SetResponder()
         {
-            _bus.RespondAsync<Core.Interfaces.Integration.UserRegisteredIntegrationEvent, ResponseMessage>(async request =>
+            _bus.RespondAsync<UserRegisteredIntegrationEvent, ResponseMessage>(async request =>
                 await RegisterStudent(request));
 
             _bus.AdvancedBus.Connected += OnConnect;
@@ -44,17 +38,16 @@ namespace AcademyIO.Students.API.Services
             SetResponder();
         }
 
-        private async Task<ResponseMessage> RegisterStudent(Core.Interfaces.Integration.UserRegisteredIntegrationEvent message)
+        private async Task<ResponseMessage> RegisterStudent(UserRegisteredIntegrationEvent message)
         {
-            //Todo: Verificar os dados que vem da mensagem para criação do usuário.
-            var estudanteCommand = new AddUserCommand(message.FirstName, false, message.LastName, message.FirstName, DateTime.Now, message.Email);
+            var command = new AddUserCommand(message.Id, message.UserName, message.IsAdmin, message.FirstName, message.LastName, message.DateOfBirth, message.UserName);
             bool sucesso;
-            ValidationResult  validationResult = new();
+            ValidationResult validationResult = new();
 
             using (var scope = _serviceProvider.CreateScope())
             {
                 var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-                sucesso = await mediator.Send(estudanteCommand);
+                sucesso = await mediator.Send(command);
             }
             if (!sucesso)
                 validationResult.Errors.Add(new ValidationFailure() { ErrorMessage = "Falha ao cadastrar estudante" });

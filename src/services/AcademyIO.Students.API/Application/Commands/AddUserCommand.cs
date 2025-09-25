@@ -5,6 +5,7 @@ namespace AcademyIO.Students.API.Application.Commands
 {
     public class AddUserCommand : Command
     {
+        public Guid UserId { get; set; }
         public string UserName { get; set; } = string.Empty;
         public bool IsAdmin { get; set; }
         public string Name { get; set; } = string.Empty;
@@ -15,8 +16,9 @@ namespace AcademyIO.Students.API.Application.Commands
 
         public string Email { get; set; } = string.Empty;
 
-        public AddUserCommand(string userName, bool isAdmin, string name, string lastName, DateTime dateOfBirth, string email)
+        public AddUserCommand(Guid userId, string userName, bool isAdmin, string name, string lastName, DateTime dateOfBirth, string email)
         {
+            UserId = userId;
             UserName = userName;
             IsAdmin = isAdmin;
             Name = name;

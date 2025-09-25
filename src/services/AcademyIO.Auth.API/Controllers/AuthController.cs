@@ -1,5 +1,4 @@
-﻿using AcademyIO.Core.Interfaces.Integration;
-using AcademyIO.Core.Messages.Integration;
+﻿using AcademyIO.Core.Messages.Integration;
 using AcademyIO.MessageBus;
 using AcademyIO.WebAPI.Core.Controllers;
 using AcademyIO.WebAPI.Core.Identity;
@@ -105,11 +104,11 @@ namespace AcademyIO.Auth.API.Controllers
             var user = await _userManager.FindByEmailAsync(registerUser.Email);
             ArgumentNullException.ThrowIfNull(user);
 
-            var userRegistered = new Core.Interfaces.Integration.UserRegisteredIntegrationEvent(registerUser.Email, registerUser.IsAdmin, registerUser.FirstName, registerUser.LastName, registerUser.DateOfBirth);
+            var userRegistered = new UserRegisteredIntegrationEvent(user.Id, registerUser.FirstName, registerUser.LastName, registerUser.Email, registerUser.DateOfBirth, registerUser.IsAdmin);
 
             try
             {
-                return await _bus.RequestAsync<Core.Interfaces.Integration.UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
+                return await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
             }
             catch (Exception)
             {
