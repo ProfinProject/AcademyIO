@@ -1,4 +1,6 @@
-﻿using AcademyIO.Bff.Models;
+﻿using AcademyIO.Bff.Extensions;
+using AcademyIO.Bff.Models;
+using Microsoft.Extensions.Options;
 
 namespace AcademyIO.Bff.Services
 {
@@ -7,8 +9,16 @@ namespace AcademyIO.Bff.Services
         Task<CourseViewModel> GetById(Guid id);
     }
 
-    public class CourseService : ICourseService
+    public class CourseService : Service, ICourseService
     {
+        private readonly HttpClient _httpClient;
+
+        public CourseService(HttpClient httpClient, IOptions<AppServicesSettings> settings)
+        {
+            _httpClient = httpClient;
+            _httpClient.BaseAddress = new Uri(settings.Value.CourseUrl);
+        }
+
         public Task<CourseViewModel> GetById(Guid id)
         {
             throw new NotImplementedException();
