@@ -97,17 +97,23 @@ namespace AcademyIO.Courses.API.Controllers
         public async Task<IActionResult> StartClass(Guid lessonId)
         {
             if (!lessonQuery.ExistsProgress(lessonId, aspNetUser.GetUserId()))
-                return NotFound("Você ainda não está matriculado a essa aula.");
+            {
+                AddErrorToStack("Você ainda não está matriculado a essa aula.");
+                return CustomResponse();
+            }   
 
             var status = lessonQuery.GetProgressStatusLesson(lessonId, aspNetUser.GetUserId());
 
             if (status == EProgressLesson.Completed)
-                return NotFound("Você já concluiu essa aula.");
+            {
+                AddErrorToStack("Você já concluiu essa aula.");
+                return CustomResponse();
+            }   
 
             var command = new StartLessonCommand(lessonId, aspNetUser.GetUserId());
             await _mediator.Send(command);
 
-            return CustomResponse(HttpStatusCode.NoContent); ;
+            return CustomResponse(HttpStatusCode.NoContent);
         }
 
         /// <summary>
@@ -125,12 +131,18 @@ namespace AcademyIO.Courses.API.Controllers
         public async Task<IActionResult> FinishClass(Guid lessonId)
         {
             if (!lessonQuery.ExistsProgress(lessonId, aspNetUser.GetUserId()))
-                return NotFound("Você ainda não está matriculado a essa aula.");
+            {
+                AddErrorToStack("Você ainda não está matriculado a essa aula.");
+                return CustomResponse();
+            }  
 
             var status = lessonQuery.GetProgressStatusLesson(lessonId, aspNetUser.GetUserId());
 
             if (status == EProgressLesson.NotStarted)
-                return NotFound("Você ainda não teve progresso nesta aula.");
+            {
+                AddErrorToStack("Você ainda não teve progresso nesta aula.");
+                return CustomResponse();
+            }    
 
             var command = new FinishLessonCommand(lessonId, aspNetUser.GetUserId());
             await _mediator.Send(command);
