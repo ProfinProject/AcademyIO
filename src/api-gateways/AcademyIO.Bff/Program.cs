@@ -1,4 +1,5 @@
 using AcademyIO.Bff.Configuration;
+using AcademyIO.Bff.Extensions;
 using AcademyIO.WebAPI.Core.Identity;
 using Serilog;
 
@@ -19,6 +20,7 @@ builder.Services.AddSwaggerConfiguration();
 
 builder.Services.RegisterServices();
 
+builder.Services.Configure<AppServicesSettings>(builder.Configuration.GetSection("AppServicesSettings"));
 //builder.Services.AddMessageBusConfiguration(builder.Configuration);
 
 //builder.Services.ConfigureGrpcServices(builder.Configuration);

@@ -50,7 +50,7 @@ namespace AcademyIO.Bff.Configuration
 
             app.MapControllers();
 
-            app.UseDefaultHealthcheck();
+            //app.UseDefaultHealthcheck();
         }
     }
 }
