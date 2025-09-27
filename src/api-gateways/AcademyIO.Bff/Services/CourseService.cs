@@ -13,6 +13,11 @@ namespace AcademyIO.Bff.Services
         Task<ResponseResult> Create(CourseViewModel course);
 
         Task<ResponseResult> MakePayment(Guid courseId, PaymentViewModel payment);
+        Task<IEnumerable<LessonViewModel>> GetLessonByCourse(Guid courseId);
+        Task<IEnumerable<LessonProgressViewModel>> GetProgressLesson();
+        Task<ResponseResult> CreateLesson(LessonViewModel lesson);
+        Task<ResponseResult> StartLesson(Guid lessonId);
+        Task<ResponseResult> FinishLesson(Guid lessonId);
     }
 
     public class CourseService : Service, ICourseService
@@ -59,6 +64,53 @@ namespace AcademyIO.Bff.Services
             var itemContent = GetContent(payment);
 
             var response = await _httpClient.PostAsync($"api/courses/{courseId}/make-Payment/", itemContent);
+
+            if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
+
+            return Ok();
+        }
+
+        public async Task<IEnumerable<LessonViewModel>> GetLessonByCourse(Guid courseId)
+        {
+            var response = await _httpClient.GetAsync($"/api/Lessons/get-by-courseId/{courseId}");
+
+            ManageHttpResponse(response);
+
+            return await DeserializeResponse<IEnumerable<LessonViewModel>>(response);
+        }
+
+        public async Task<IEnumerable<LessonProgressViewModel>> GetProgressLesson()
+        {
+            var response = await _httpClient.GetAsync($"/api/Lessons/get-progress");
+
+            ManageHttpResponse(response);
+
+            return await DeserializeResponse<IEnumerable<LessonProgressViewModel>>(response);
+        }
+
+        public async Task<ResponseResult> CreateLesson(LessonViewModel lesson)
+        {
+            var itemContent = GetContent(lesson);
+
+            var response = await _httpClient.PostAsync("/api/Lessons", itemContent);
+
+            if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
+
+            return Ok();
+        }
+
+        public async Task<ResponseResult> StartLesson(Guid lessonId)
+        {
+            var response = await _httpClient.PostAsync($"/api/Lessons/{lessonId}/start-class", null);
+
+            if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
+
+            return Ok();
+        }
+
+        public async Task<ResponseResult> FinishLesson(Guid lessonId)
+        {
+            var response = await _httpClient.PostAsync($"/api/Lessons/{lessonId}/finish-class", null);
 
             if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
 

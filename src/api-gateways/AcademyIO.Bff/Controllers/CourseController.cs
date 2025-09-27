@@ -2,6 +2,7 @@
 using AcademyIO.Bff.Services;
 using AcademyIO.WebAPI.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace AcademyIO.Bff.Controllers
 {
@@ -17,7 +18,7 @@ namespace AcademyIO.Bff.Controllers
         }
 
         [HttpGet]
-        [Route("get-courses")]
+        [Route("courses")]
         public async Task<IActionResult> GetAll()
         {
             var response = await _courseService.GetAll();
@@ -25,7 +26,7 @@ namespace AcademyIO.Bff.Controllers
         }
 
         [HttpGet]
-        [Route("get-course")]
+        [Route("course")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var response = await _courseService.GetById(id);
@@ -45,6 +46,46 @@ namespace AcademyIO.Bff.Controllers
         public async Task<IActionResult> MakePaymentCourse(Guid courseId, PaymentViewModel payment)
         {
             var response = await _courseService.MakePayment(courseId, payment);
+            return CustomResponse(response);
+        }
+
+        [HttpGet]
+        [Route("lesson-course")]
+        public async Task<IActionResult> GetLessonByCourse(Guid courseId)
+        {
+            var response = await _courseService.GetLessonByCourse(courseId);
+            return CustomResponse(response);
+        }
+
+        [HttpGet]
+        [Route("progress-lesson")]
+        public async Task<IActionResult> GetProgressLesson()
+        {
+            var response = await _courseService.GetProgressLesson();
+            return CustomResponse(response);
+        }
+
+        [HttpPost]
+        [Route("create-lesson")]
+        public async Task<IActionResult> CreateLesson(LessonViewModel lesson)
+        {
+            var response = await _courseService.CreateLesson(lesson);
+            return CustomResponse(response);
+        }
+
+        [HttpPost]
+        [Route("start-lesson")]
+        public async Task<IActionResult> StartLesson(Guid lessonId)
+        {
+            var response = await _courseService.StartLesson(lessonId);
+            return CustomResponse(response);
+        }
+
+        [HttpPost]
+        [Route("finish-lesson")]
+        public async Task<IActionResult> FinishLesson(Guid lessonId)
+        {
+            var response = await _courseService.FinishLesson(lessonId);
             return CustomResponse(response);
         }
     }
