@@ -2,7 +2,6 @@
 using AcademyIO.Bff.Services;
 using AcademyIO.WebAPI.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace AcademyIO.Bff.Controllers
 {

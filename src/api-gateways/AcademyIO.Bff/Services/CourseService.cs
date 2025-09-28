@@ -1,7 +1,6 @@
 ﻿using AcademyIO.Bff.Extensions;
 using AcademyIO.Bff.Models;
 using AcademyIO.Core.Communication;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 namespace AcademyIO.Bff.Services
