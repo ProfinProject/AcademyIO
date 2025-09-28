@@ -1,7 +1,6 @@
 ﻿using AcademyIO.Core.Utils;
 using AcademyIO.Students.API.Data;
 using AcademyIO.Students.API.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace AcademyIO.Students.API.Configuration
@@ -52,7 +51,7 @@ namespace AcademyIO.Students.API.Configuration
             var studentUserAdmin = new StudentUser(admin.Id, admin.Email, admin.FirstName, admin.LastName, admin.Email, admin.DateOfBirth, admin.IsAdmin);
             await context.StudentUsers.AddAsync(studentUserAdmin);
 
-            var studentUser1 = new StudentUser(student1.Id, student1.Email, student1.FirstName, student1.LastName, student1.Email,student1.DateOfBirth, student1.IsAdmin);
+            var studentUser1 = new StudentUser(student1.Id, student1.Email, student1.FirstName, student1.LastName, student1.Email, student1.DateOfBirth, student1.IsAdmin);
             await context.StudentUsers.AddAsync(studentUser1);
 
             var studentUser2 = new StudentUser(student2.Id, student2.Email, student2.FirstName, student2.LastName, student2.Email, student2.DateOfBirth, student2.IsAdmin);
