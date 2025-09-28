@@ -7,6 +7,12 @@ import { Cursos } from './features/cursos/cursos';
 import { Contato } from './public/contato/contato';
 import { Login } from './public/login/login';
 import { Registrar } from './public/registrar/registrar';
+import { Ementa } from './aluno/ementa/ementa';
+import { PainelAdministrativo } from './administrador/painel-administrativo/painel-administrativo';
+import { CadastrarCurso } from './administrador/cadastrar-curso/cadastrar-curso';
+import { CadastrarAula } from './administrador/cadastrar-aula/cadastrar-aula';
+import { GerenciarAulas } from './administrador/gerenciar-aulas/gerenciar-aulas';
+import { MeusCursos } from './administrador/meus-cursos/meus-cursos';
 
 
 
@@ -17,7 +23,16 @@ export const routes: Routes = [
     ,{path:'Contato', component: Contato}
     ,{path:'login', component: Login}
     ,{path:'registrar', component: Registrar}
+    ,{path:'ementa', component: Ementa}
+
+        ,{path:'painel-administrador', component: PainelAdministrativo}
+        ,{path:'cadastrar-curso', component: CadastrarCurso}
+        ,{path:'cadastrar-aula', component: CadastrarAula}
+        ,{path:'gerenciar-aulas', component: GerenciarAulas}
+        ,{path:'meus-cursos', component: MeusCursos}
     ,{path:'not-found', component: NotFound}
+
+
     ,{ path: '', redirectTo: '/home', pathMatch: 'full' }
     ,{ path: '**', redirectTo: '/not-found' } 
 ];

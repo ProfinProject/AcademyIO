@@ -1,0 +1,176 @@
+
+<header class="bg-light border-bottom">
+  <div class="container py-3">
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+      <div>
+        <h1 class="h4 fw-bold text-dark mb-1">
+          <i class="fas fa-graduation-cap me-2" style="color: #02a102;"></i>
+          Meus Cursos
+        </h1>
+        <p class="text-muted mb-0">Gerencie seus cursos, aulas e desempenho</p>
+      </div>
+      <a href="/admin/cursos/novo" class="btn mt-2 mt-md-0" 
+         style="background: linear-gradient(135deg, #02a102, #017a01); color: white; font-weight: 600; border: none;">
+        <i class="fas fa-plus me-2"></i> Novo Curso
+      </a>
+    </div>
+  </div>
+</header>
+
+
+<div class="container py-3">
+  <div class="d-flex flex-wrap gap-2 align-items-center">
+    <span class="fw-medium text-muted">Filtrar por:</span>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-outline-secondary btn-sm">Todos</button>
+      <button type="button" class="btn btn-outline-success btn-sm" style="border-color: #02a102; color: #02a102;">
+        Ativos
+      </button>
+      <button type="button" class="btn btn-outline-secondary btn-sm">Inativos</button>
+    </div>
+  </div>
+</div>
+
+
+<main class="pb-5">
+  <div class="container">
+    <div class="row g-4">
+
+      <div class="col-12">
+        <div class="card border-0 shadow-sm rounded-3">
+          <div class="card-body">
+            <div class="d-flex flex-column flex-lg-row gap-4">
+
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-start gap-3">
+                  <div>
+                    <span class="badge bg-success mb-2" style="background-color: #02a102 !important;">
+                      Ativo
+                    </span>
+                    <h3 class="h5 fw-bold text-dark mb-1">Desenvolvimento Web com Angular</h3>
+                    <p class="text-muted mb-2">
+                      Domine o framework mais poderoso do ecossistema JavaScript e crie aplicações profissionais.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 text-muted small">
+                      <span><i class="fas fa-clock me-1"></i> 42h de conteúdo</span>
+                      <span><i class="fas fa-user-graduate me-1"></i> 240 alunos</span>
+                      <span><i class="fas fa-star me-1"></i> 4.9 (32 avaliações)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="d-flex flex-column align-items-end justify-content-between">
+                <div class="text-end">
+                  <div class="h5 fw-bold" style="color: #02a102;">R$ 299,00</div>
+                  <small class="text-muted">Preço atual</small>
+                </div>
+                <div class="d-flex gap-2 mt-3 mt-lg-0">
+                  <a href="/admin/cursos/1/editar" class="btn btn-sm btn-outline-secondary" title="Editar curso">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="/admin/aulas?curso=1" class="btn btn-sm btn-outline-primary" title="Gerenciar aulas">
+                    <i class="fas fa-list-ol"></i>
+                  </a>
+                  <button class="btn btn-sm btn-outline-danger" title="Excluir curso">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card border-0 shadow-sm rounded-3">
+          <div class="card-body">
+            <div class="d-flex flex-column flex-lg-row gap-4">
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-start gap-3">
+                  <div>
+                    <span class="badge bg-secondary mb-2">Inativo</span>
+                    <h3 class="h5 fw-bold text-dark mb-1">Análise de Dados com Python</h3>
+                    <p class="text-muted mb-2">
+                      Aprenda Pandas, visualização de dados e introdução ao machine learning.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 text-muted small">
+                      <span><i class="fas fa-clock me-1"></i> 36h de conteúdo</span>
+                      <span><i class="fas fa-user-graduate me-1"></i> 85 alunos</span>
+                      <span><i class="fas fa-star me-1"></i> 4.7 (18 avaliações)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-end justify-content-between">
+                <div class="text-end">
+                  <div class="h5 fw-bold" style="color: #6c757d;">R$ 349,00</div>
+                  <small class="text-muted">Inativo</small>
+                </div>
+                <div class="d-flex gap-2 mt-3 mt-lg-0">
+                  <a href="/admin/cursos/2/editar" class="btn btn-sm btn-outline-secondary" title="Editar curso">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="/admin/aulas?curso=2" class="btn btn-sm btn-outline-primary" title="Gerenciar aulas">
+                    <i class="fas fa-list-ol"></i>
+                  </a>
+                  <button class="btn btn-sm btn-outline-danger" title="Excluir curso">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12">
+        <div class="card border-0 shadow-sm rounded-3">
+          <div class="card-body">
+            <div class="d-flex flex-column flex-lg-row gap-4">
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-start gap-3">
+                  <div>
+                    <span class="badge bg-success mb-2" style="background-color: #02a102 !important;">
+                      Ativo
+                    </span>
+                    <h3 class="h5 fw-bold text-dark mb-1">Apps Mobile com Flutter</h3>
+                    <p class="text-muted mb-2">
+                      Crie aplicativos iOS e Android com uma única base de código.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 text-muted small">
+                      <span><i class="fas fa-clock me-1"></i> 30h de conteúdo</span>
+                      <span><i class="fas fa-user-graduate me-1"></i> 156 alunos</span>
+                      <span><i class="fas fa-star me-1"></i> 4.8 (24 avaliações)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-end justify-content-between">
+                <div class="text-end">
+                  <div class="h5 fw-bold" style="color: #02a102;">R$ 279,00</div>
+                  <small class="text-muted">Preço atual</small>
+                </div>
+                <div class="d-flex gap-2 mt-3 mt-lg-0">
+                  <a href="/admin/cursos/3/editar" class="btn btn-sm btn-outline-secondary" title="Editar curso">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="/admin/aulas?curso=3" class="btn btn-sm btn-outline-primary" title="Gerenciar aulas">
+                    <i class="fas fa-list-ol"></i>
+                  </a>
+                  <button class="btn btn-sm btn-outline-danger" title="Excluir curso">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+  </div>
+</main>

@@ -1,0 +1,171 @@
+<!-- Cabeçalho -->
+<header class="bg-light border-bottom">
+  <div class="container py-3">
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+      <div>
+        <h1 class="h4 fw-bold text-dark mb-1">
+          <i class="fas fa-list-ol me-2" style="color: #02a102;"></i>
+          Gerenciar Aulas
+        </h1>
+        <p class="text-muted mb-0">Curso: <strong>Desenvolvimento Web com Angular</strong></p>
+      </div>
+      <a href="/admin/aulas/nova" class="btn mt-2 mt-md-0" 
+         style="background: linear-gradient(135deg, #02a102, #017a01); color: white; font-weight: 600; border: none;">
+        <i class="fas fa-plus me-2"></i> Nova Aula
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Lista de aulas -->
+<main class="py-4">
+  <div class="container">
+    <div class="card border-0 shadow-sm rounded-3">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead class="bg-light">
+              <tr>
+                <th width="60">#</th>
+                <th>Título da Aula</th>
+                <th width="120">Duração</th>
+                <th width="120">Tipo</th>
+                <th width="180" class="text-center">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Aula 1 -->
+              <tr>
+                <td class="align-middle fw-bold" style="color: #02a102;">1</td>
+                <td class="align-middle">
+                  <div>
+                    <span class="fw-medium">1.1 - O que é Angular?</span>
+                  </div>
+                  <small class="text-muted">Introdução ao framework</small>
+                </td>
+                <td class="align-middle">
+                  <span class="badge bg-light text-dark border">12:30</span>
+                </td>
+                <td class="align-middle">
+                  <span class="badge bg-primary">Vídeo</span>
+                </td>
+                <td class="align-middle text-center">
+                  <div class="d-flex justify-content-center gap-2">
+                    <a href="/admin/aulas/1/editar" class="btn btn-sm btn-outline-secondary" title="Editar">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <button class="btn btn-sm btn-outline-danger" title="Excluir">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Aula 2 -->
+              <tr>
+                <td class="align-middle fw-bold" style="color: #02a102;">2</td>
+                <td class="align-middle">
+                  <div>
+                    <span class="fw-medium">1.2 - Configurando o ambiente</span>
+                  </div>
+                  <small class="text-muted">Instalação do Node.js e Angular CLI</small>
+                </td>
+                <td class="align-middle">
+                  <span class="badge bg-light text-dark border">18:45</span>
+                </td>
+                <td class="align-middle">
+                  <span class="badge bg-primary">Vídeo</span>
+                </td>
+                <td class="align-middle text-center">
+                  <div class="d-flex justify-content-center gap-2">
+                    <a href="/admin/aulas/2/editar" class="btn btn-sm btn-outline-secondary" title="Editar">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <button class="btn btn-sm btn-outline-danger" title="Excluir">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Aula 3 -->
+              <tr>
+                <td class="align-middle fw-bold" style="color: #02a102;">3</td>
+                <td class="align-middle">
+                  <div>
+                    <span class="fw-medium">1.3 - Primeiro projeto</span>
+                  </div>
+                  <small class="text-muted">Criando sua primeira aplicação Angular</small>
+                </td>
+                <td class="align-middle">
+                  <span class="badge bg-light text-dark border">22:10</span>
+                </td>
+                <td class="align-middle">
+                  <span class="badge bg-success">Exercício</span>
+                </td>
+                <td class="align-middle text-center">
+                  <div class="d-flex justify-content-center gap-2">
+                    <a href="/admin/aulas/3/editar" class="btn btn-sm btn-outline-secondary" title="Editar">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <button class="btn btn-sm btn-outline-danger" title="Excluir">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Aula 4 -->
+              <tr>
+                <td class="align-middle fw-bold" style="color: #02a102;">4</td>
+                <td class="align-middle">
+                  <div>
+                    <span class="fw-medium">1.4 - Material de apoio</span>
+                  </div>
+                  <small class="text-muted">PDF com comandos e boas práticas</small>
+                </td>
+                <td class="align-middle">
+                  <span class="badge bg-light text-dark border">—</span>
+                </td>
+                <td class="align-middle">
+                  <span class="badge bg-warning text-dark">Material</span>
+                </td>
+                <td class="align-middle text-center">
+                  <div class="d-flex justify-content-center gap-2">
+                    <a href="/admin/aulas/4/editar" class="btn btn-sm btn-outline-secondary" title="Editar">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <button class="btn btn-sm btn-outline-danger" title="Excluir">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mensagem se não houver aulas -->
+        <!--
+        <div class="text-center py-5 text-muted" *ngIf="aulas.length === 0">
+          <i class="fas fa-inbox fa-3x mb-3"></i>
+          <h5 class="fw-bold">Nenhuma aula cadastrada</h5>
+          <p class="mb-0">Clique em "Nova Aula" para começar.</p>
+        </div>
+        -->
+      </div>
+    </div>
+
+    <!-- Paginação (opcional) -->
+    <div class="d-flex justify-content-center mt-4">
+      <nav>
+        <ul class="pagination pagination-sm">
+          <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</main>
