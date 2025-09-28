@@ -48,6 +48,7 @@ namespace AcademyIO.Courses.API.Configuration
                 {
                     new()
                     {
+                        Id = new Guid("55555555-5555-5555-5555-555555555555"),
                         Name = "Modelagem de Dominios Ricos",
                         CreatedDate = DateTime.Now,
                         Deleted = false,
@@ -57,6 +58,7 @@ namespace AcademyIO.Courses.API.Configuration
                     },
                    new()
                     {
+                        Id = new Guid("66666666-6666-6666-6666-666666666666"),
                         Name = "Dominando Testes de Software",
                         CreatedDate = DateTime.Now,
                         Deleted = false,

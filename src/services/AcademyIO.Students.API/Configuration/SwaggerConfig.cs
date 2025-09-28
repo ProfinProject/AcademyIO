@@ -16,7 +16,7 @@ namespace AcademyIO.Students.API.Configuration
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Academy IO",
+                    Title = "Academy IO - Students API",
                     Description = "AcademyIO Swagger",
                     Contact = new OpenApiContact { Name = "Academy IO Team", Email = "admin@AcademyIO.com" },
                     License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://github.com/ProfinProject/AcademyIO") }
@@ -58,7 +58,7 @@ namespace AcademyIO.Students.API.Configuration
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AcademyIO API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AcademyIO Student API v1");
             });
 
             return app;

@@ -10,12 +10,15 @@ namespace AcademyIO.Bff.Controllers
     {
         private readonly IStudentService _studentService;
         private readonly ICourseService _courseService;
+        private readonly IPaymentService _paymentService;
         public StudentsController(
         IStudentService studentService,
-        ICourseService courseService)
+        ICourseService courseService,
+        IPaymentService paymentService)
         {
             _studentService = studentService;
             _courseService = courseService;
+            _paymentService = paymentService;
         }
 
         [HttpPost]
@@ -26,12 +29,11 @@ namespace AcademyIO.Bff.Controllers
             if (course == null)
                 return NotFound("Curso não encontrado.");
 
-            //TO DO LUIS, criar payment exists endpoint
-            //var paymentExists = await paymentQuery.PaymentExists(userId, courseId);
-            //if (!paymentExists)
-            //    return UnprocessableEntity("Você não possui acesso a esse curso.");
-               
-           var response = await _studentService.RegisterToCourse(courseId);
+            var paymentExists = await _paymentService.PaymentExists(courseId);
+            if (!paymentExists)
+               return UnprocessableEntity("Você não possui acesso a esse curso.");
+
+            var response = await _studentService.RegisterToCourse(courseId);
 
             return CustomResponse(response);
         }

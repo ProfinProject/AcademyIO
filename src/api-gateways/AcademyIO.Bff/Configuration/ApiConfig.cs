@@ -45,8 +45,8 @@ namespace AcademyIO.Bff.Configuration
 
             app.UseCors("Total");
 
-            //TO DO CAIO
-            //app.UseAuthConfiguration();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapControllers();
 
