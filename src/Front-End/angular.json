@@ -22,6 +22,10 @@
               }
             ],
             "styles": [
+              "src/styles.css",
+               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+
               "src/styles.css"
             ],
             "server": "src/main.server.ts",
@@ -86,5 +90,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f3fd246a-a339-4447-820d-67533da4c2f4"
   }
 }

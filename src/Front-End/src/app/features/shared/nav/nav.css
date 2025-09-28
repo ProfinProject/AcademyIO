@@ -1,0 +1,11 @@
+.nav-menu{
+        padding: 19px !important;
+}
+.text-cor-padrao{
+    color: #02a102 !important;
+}
+
+.router-link {
+  cursor: pointer;
+  text-decoration: none;
+}
