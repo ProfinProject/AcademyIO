@@ -3,6 +3,7 @@ using AcademyIO.Payments.API.Business;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AcademyIO.WebAPI.Core.Controllers;
+using AcademyIO.WebAPI.Core.User;
 
 namespace AcademyIO.Payments.API.Controllers;
 
@@ -11,10 +12,12 @@ namespace AcademyIO.Payments.API.Controllers;
 public class PaymentsController : MainController
 {
     private readonly PaymentsContext _context;
+    private readonly IAspNetUser _aspNetUser;
 
-    public PaymentsController(PaymentsContext context)
+    public PaymentsController(PaymentsContext context, IAspNetUser aspNetUser)
     {
         _context = context;
+        _aspNetUser = aspNetUser;
     }
 
     [HttpGet]
@@ -53,9 +56,9 @@ public class PaymentsController : MainController
 
 
     [HttpGet("exists")]
-    public async Task<ActionResult<bool>> PaymentExists(Guid studentId, Guid courseId)
+    public async Task<ActionResult<bool>> PaymentExists(Guid courseId)
     {
-        var exists = await _context.Set<Payment>().AnyAsync(p => p.StudentId == studentId && p.CourseId == courseId && !p.Deleted);
+        var exists = await _context.Set<Payment>().AnyAsync(p => p.StudentId == _aspNetUser.GetUserId() && p.CourseId == courseId && !p.Deleted);
         return Ok(exists);
     }
 
