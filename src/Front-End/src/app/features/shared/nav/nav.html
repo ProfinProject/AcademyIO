@@ -11,7 +11,7 @@
         <li class="nav-item">
           <a class="nav-link  " href="/home" aria-current="page"  routerLink="/home" routerLinkActive="active" >
             <i class="fa-solid fa-house text-cor-padrao"></i>
-            Home</a>
+            Inicio</a>
         </li>
          <li class="nav-item">
           <a class="nav-link  " href="/lista-cursos" aria-current="page"  routerLink="/listacursos" routerLinkActive="active">
@@ -24,11 +24,48 @@
             Sobre</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link  router-link "  href="/copntato"  routerLinkActive="active" aria-current="page">
+          <a class="nav-link  router-link "  href="/Contato"  routerLinkActive="active" aria-current="page">
             <i class="fa-solid fa-address-book text-cor-padrao"></i>
             Contato</a>
         </li>
       </ul>
+
+  
+      <div class="d-flex ms-auto align-items-center gap-2">
+        <!-- Botão Entrar -->
+        <a href="/login"
+           class="btn rounded-pill px-3 py-2 d-flex align-items-center"
+           style="
+             color: #02a102;
+             background-color: transparent;
+             border: 2px solid #02a102;
+             font-weight: 600;
+             transition: all 0.25s ease;
+             box-shadow: 0 2px 5px rgba(2, 161, 2, 0.15);
+           "
+           onmouseover="this.style.boxShadow='0 4px 10px rgba(2, 161, 2, 0.25)'; this.style.transform='translateY(-2px)';"
+           onmouseout="this.style.boxShadow='0 2px 5px rgba(2, 161, 2, 0.15)'; this.style.transform='translateY(0)';">
+          <i class="fas fa-arrow-right-to-bracket me-1"></i>
+          Entrar
+        </a>
+
+
+        <a href="/registrar"
+           class="btn rounded-pill px-3 py-2 d-flex align-items-center text-white"
+           style="
+             background: linear-gradient(135deg, #02a102, #017a01);
+             border: none;
+             font-weight: 600;
+             transition: all 0.25s ease;
+             box-shadow: 0 3px 8px rgba(2, 161, 2, 0.3);
+           "
+           onmouseover="this.style.boxShadow='0 5px 15px rgba(2, 161, 2, 0.4)'; this.style.transform='translateY(-2px)';"
+           onmouseout="this.style.boxShadow='0 3px 8px rgba(2, 161, 2, 0.3)'; this.style.transform='translateY(0)';">
+          <i class="fas fa-user-plus me-1"></i>
+          Cadastrar
+        </a>
+      </div>
+
     </div>
   </div>
 </nav>
