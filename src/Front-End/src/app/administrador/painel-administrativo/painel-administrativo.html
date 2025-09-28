@@ -1,0 +1,110 @@
+
+<header class="bg-light border-bottom">
+  <div class="container py-3">
+    <h1 class="h3 fw-bold text-dark mb-0">
+      <i class="fas fa-shield-alt me-2" style="color: #02a102;"></i>
+      Painel Administrativo
+    </h1>
+    <p class="text-muted mb-0">Gerencie cursos, aulas e alunos da AcademyIO</p>
+  </div>
+</header>
+
+<main class="py-5">
+  <div class="container">
+    <div class="row g-4">
+  
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm rounded-3 hover-shadow" 
+             style="transition: transform 0.3s ease; cursor: pointer;"
+             onclick="window.location='cadastrar-curso'">
+          <div class="card-body d-flex flex-column align-items-center text-center p-4">
+            <div class="bg-light bg-opacity-50 rounded-circle d-flex align-items-center justify-content-center mb-3" 
+                 style="width: 70px; height: 70px;">
+              <i class="fas fa-plus-circle fa-2x" style="color: #02a102;"></i>
+            </div>
+            <h3 class="card-title fw-bold text-dark">Cadastrar Curso</h3>
+            <p class="card-text text-muted mt-2">
+              Crie um novo curso com título, descrição, preço e duração.
+            </p>
+            <div class="mt-auto pt-2">
+              <span class="badge bg-success" style="background-color: #02a102 !important;">
+                <i class="fas fa-book me-1"></i> Novo curso
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm rounded-3 hover-shadow" 
+             style="transition: transform 0.3s ease; cursor: pointer;"
+             onclick="window.location='gerenciar-aulas'">
+          <div class="card-body d-flex flex-column align-items-center text-center p-4">
+            <div class="bg-light bg-opacity-50 rounded-circle d-flex align-items-center justify-content-center mb-3" 
+                 style="width: 70px; height: 70px;">
+              <i class="fas fa-video fa-2x" style="color: #02a102;"></i>
+            </div>
+            <h3 class="card-title fw-bold text-dark">Gerenciar Aulas</h3>
+            <p class="card-text text-muted mt-2">
+              Adicione, edite ou remova aulas de cursos existentes.
+            </p>
+            <div class="mt-auto pt-2">
+              <span class="badge bg-light text-dark border">
+                <i class="fas fa-list-ol me-1"></i> +120 aulas
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm rounded-3 hover-shadow" 
+             style="transition: transform 0.3s ease; cursor: pointer;"
+             onclick="window.location='meus-cursos'">
+          <div class="card-body d-flex flex-column align-items-center text-center p-4">
+            <div class="bg-light bg-opacity-50 rounded-circle d-flex align-items-center justify-content-center mb-3" 
+                 style="width: 70px; height: 70px;">
+              <i class="fas fa-graduation-cap fa-2x" style="color: #02a102;"></i>
+            </div>
+            <h3 class="card-title fw-bold text-dark">Meus Cursos</h3>
+            <p class="card-text text-muted mt-2">
+              Visualize, edite ou desative seus cursos publicados.
+            </p>
+            <div class="mt-auto pt-2">
+              <span class="badge bg-light text-dark border">
+                <i class="fas fa-folder me-1"></i> 8 cursos
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row mt-5">
+      <div class="col-12">
+        <h2 class="h5 fw-bold text-dark mb-3">
+          <i class="fas fa-bolt me-2" style="color: #02a102;"></i>
+          Acesso Rápido
+        </h2>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="cadastrar-curso" class="btn btn-outline-success px-3 py-2 rounded-pill" 
+             style="color: #02a102; border-color: #02a102;">
+            <i class="fas fa-plus me-1"></i> Novo Curso
+          </a>
+          <a href="cadastrar-aula" class="btn btn-outline-success px-3 py-2 rounded-pill" 
+             style="color: #02a102; border-color: #02a102;">
+            <i class="fas fa-video me-1"></i> Nova Aula
+          </a>
+          <a href="alunos" class="btn btn-outline-success px-3 py-2 rounded-pill" 
+             style="color: #02a102; border-color: #02a102;">
+            <i class="fas fa-users me-1"></i> Alunos
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
