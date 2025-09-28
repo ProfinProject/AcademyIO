@@ -16,6 +16,7 @@ namespace AcademyIO.Bff.Configuration
 
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
 
+            services.AddHttpClient<IPaymentService, PaymentService>();
             services.AddHttpClient<IStudentService, StudentService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
                 .AllowSelfSignedCertificate()

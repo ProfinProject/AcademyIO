@@ -1,6 +1,7 @@
 ﻿using AcademyIO.Payments.API.Data;
 using AcademyIO.Payments.API.Business;
 using Microsoft.EntityFrameworkCore;
+using AcademyIO.Core.Utils;
 
 namespace AcademyIO.Payments.API.Configuration
 {
@@ -42,12 +43,15 @@ namespace AcademyIO.Payments.API.Configuration
         {
             if (!context.Payments.Any())
             {
+                var student1 = SeedStudentUserData.Users.FirstOrDefault(a => a.FirstName.Equals("Student1"))!;
+                var student2 = SeedStudentUserData.Users.FirstOrDefault(a => a.FirstName.Equals("Student2"))!;
+
                 var payments = new List<Payment>
                 {
                     new()
                     {
-                        CourseId = Guid.NewGuid(),
-                        StudentId = Guid.NewGuid(),
+                        CourseId = new Guid("55555555-5555-5555-5555-555555555555"),
+                        StudentId = student1.Id,
                         Value = 500,
                         CardName = "Aluno Teste",
                         CardNumber = "1234567890123456",
@@ -59,8 +63,8 @@ namespace AcademyIO.Payments.API.Configuration
                     },
                     new()
                     {
-                        CourseId = Guid.NewGuid(),
-                        StudentId = Guid.NewGuid(),
+                        CourseId = new Guid("66666666-6666-6666-6666-666666666666"),
+                        StudentId = student2.Id,
                         Value = 350,
                         CardName = "Aluno Teste 2",
                         CardNumber = "6543210987654321",
