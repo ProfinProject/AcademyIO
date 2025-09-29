@@ -32,5 +32,15 @@ namespace AcademyIO.Courses.API.Data.Repository
         {
             return _dbSet.Any(a => a.Id == courseId);
         }
+
+        public void Update(Course course)
+        {
+            _dbSet.Update(course);
+        }
+
+        public void Delete(Course course)
+        {
+            _dbSet.Remove(course);
+        }
     }
 }

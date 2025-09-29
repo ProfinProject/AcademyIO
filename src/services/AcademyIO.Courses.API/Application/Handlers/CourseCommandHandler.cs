@@ -11,6 +11,8 @@ namespace AcademyIO.Courses.API.Application.Handlers
     public class CourseCommandHandler(ICourseRepository courseRepository,
                                 ILessonRepository lessonRepository,
                                 IMediator mediator) : IRequestHandler<AddCourseCommand, bool>,
+                                                      IRequestHandler<UpdateCourseCommand, bool>,
+                                                      IRequestHandler<RemoveCourseCommand, bool>,
                                                       IRequestHandler<ValidatePaymentCourseCommand, bool>,
                                                       IRequestHandler<CreateProgressByCourseCommand, bool>
     {
@@ -26,6 +28,43 @@ namespace AcademyIO.Courses.API.Application.Handlers
             };
 
             courseRepository.Add(course);
+
+            return await courseRepository.UnitOfWork.Commit();
+        }
+
+        public async Task<bool> Handle(UpdateCourseCommand request, CancellationToken cancellationToken)
+        {
+            if (!ValidatComand(request)) return false;
+
+            var course = await courseRepository.GetById(request.CourseId);
+            if (course == null)
+            {
+                await mediator.Publish(new DomainNotification(request.MessageType, "Curso não encontrado."), cancellationToken);
+                return false;
+            }
+
+            course.Id = request.CourseId;
+            course.Name = request.Name;
+            course.Description = request.Description;
+            course.Price = request.Price;
+
+            courseRepository.Update(course);
+
+            return await courseRepository.UnitOfWork.Commit();
+        }
+
+        public async Task<bool> Handle(RemoveCourseCommand request, CancellationToken cancellationToken)
+        {
+            if (!ValidatComand(request)) return false;
+
+            var course = await courseRepository.GetById(request.CourseId);
+            if (course == null)
+            {
+                await mediator.Publish(new DomainNotification(request.MessageType, "Curso não encontrado."), cancellationToken);
+                return false;
+            }
+
+            courseRepository.Delete(course);
 
             return await courseRepository.UnitOfWork.Commit();
         }

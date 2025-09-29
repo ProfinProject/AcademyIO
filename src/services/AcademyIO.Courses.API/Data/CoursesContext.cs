@@ -48,11 +48,11 @@ namespace AcademyIO.Courses.API.Data
                 {
                     entityEntry.Property("CreatedDate").IsModified = false;
                 }
-                if (entityEntry.State == EntityState.Deleted)
-                {
-                    entityEntry.State = EntityState.Modified;
-                    entityEntry.Property("CreatedDate").IsModified = false;
-                }
+                //if (entityEntry.State == EntityState.Deleted)
+                //{
+                //    entityEntry.State = EntityState.Modified;
+                //    entityEntry.Property("CreatedDate").IsModified = false;
+                //}
             }
             return base.SaveChangesAsync(cancellationToken);
         }

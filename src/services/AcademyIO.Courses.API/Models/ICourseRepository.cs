@@ -1,4 +1,5 @@
 ﻿using AcademyIO.Core.Data;
+using YamlDotNet.Core;
 
 namespace AcademyIO.Courses.API.Models
 {
@@ -11,5 +12,8 @@ namespace AcademyIO.Courses.API.Models
         void Add(Course course);
 
         bool CourseExists(Guid courseI);
+
+        void Update(Course course);
+        void Delete(Course course);
     }
 }

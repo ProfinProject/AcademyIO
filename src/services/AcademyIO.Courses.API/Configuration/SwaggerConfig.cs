@@ -1,21 +1,18 @@
 ﻿using Microsoft.OpenApi.Models;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 
 namespace AcademyIO.Courses.API.Configuration
-{
+{    
     public static class SwaggerConfig
     {
-        public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
+        public static void AddSwaggerConfiguration(this IServiceCollection services)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
-
-            services.AddEndpointsApiExplorer();
-
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "v1",
-                    Title = "Academy IO",
+                    Title = "Academy IO - Curso",
                     Description = "AcademyIO Swagger",
                     Contact = new OpenApiContact { Name = "Academy IO Team", Email = "admin@AcademyIO.com" },
                     License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://github.com/ProfinProject/AcademyIO") }
@@ -46,21 +43,15 @@ namespace AcademyIO.Courses.API.Configuration
                     }
                 });
             });
-
-            return services;
         }
 
-        public static IApplicationBuilder UseSwaggerSetup(this IApplicationBuilder app)
+        public static void UseSwaggerSetup(this IApplicationBuilder app)
         {
-            if (app == null) throw new ArgumentNullException(nameof(app));
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "AcademyIO API v1");
             });
-
-            return app;
         }
     }
 }

@@ -40,6 +40,22 @@ namespace AcademyIO.Bff.Controllers
             return CustomResponse(response);
         }
 
+        [HttpPut]
+        [Route("update-course")]
+        public async Task<IActionResult> UpdateCourse(CourseViewModel course)
+        {
+            var response = await _courseService.Update(course);
+            return CustomResponse(response);
+        }
+
+        [HttpDelete]
+        [Route("remove-course")]
+        public async Task<IActionResult> RemoveCourse(Guid id)
+        {
+            var response = await _courseService.Remove(id);
+            return CustomResponse(response);
+        }
+
         [HttpPost]
         [Route("make-payment")]
         public async Task<IActionResult> MakePaymentCourse(Guid courseId, PaymentViewModel payment)

@@ -17,6 +17,8 @@ namespace AcademyIO.Bff.Services
         Task<ResponseResult> CreateLesson(LessonViewModel lesson);
         Task<ResponseResult> StartLesson(Guid lessonId);
         Task<ResponseResult> FinishLesson(Guid lessonId);
+        Task<ResponseResult> Update(CourseViewModel course);
+        Task<ResponseResult> Remove(Guid id);
     }
 
     public class CourseService : Service, ICourseService
@@ -52,6 +54,26 @@ namespace AcademyIO.Bff.Services
             var itemContent = GetContent(course);
 
             var response = await _httpClient.PostAsync("api/courses/create/", itemContent);
+
+            if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
+
+            return Ok();
+        }
+
+        public async Task<ResponseResult> Update(CourseViewModel course)
+        {
+            var itemContent = GetContent(course);
+
+            var response = await _httpClient.PutAsync("api/courses/update/", itemContent);
+
+            if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
+
+            return Ok();
+        }
+
+        public async Task<ResponseResult> Remove(Guid id)
+        {
+            var response = await _httpClient.DeleteAsync($"api/courses/remove/{id}");
 
             if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
 

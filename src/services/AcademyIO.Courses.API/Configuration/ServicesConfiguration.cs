@@ -26,6 +26,8 @@ namespace AcademyIO.Courses.API.Configuration
             services.AddScoped<ICourseQuery, CourseQuery>();
             services.AddScoped<ILessonQuery, LessonQuery>();            
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddLessonCommand>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UpdateCourseCommand>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<RemoveCourseCommand>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<StartLessonCommand>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<FinishLessonCommand>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddCourseCommand>());

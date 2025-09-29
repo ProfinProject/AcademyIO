@@ -64,6 +64,42 @@ namespace AcademyIO.Courses.API.Controllers
         }
 
         /// <summary>
+        /// Atualizar curso
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns>Retorna que o curso foi atualizado, status 204</returns>
+        [Authorize(Roles = "ADMIN")]
+        [HttpPut("update")]
+        [ProducesResponseType(typeof(CourseViewModel), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> Update(CourseViewModel course)
+        {
+            var command = new UpdateCourseCommand(course.Name, course.Description, aspNetUser.GetUserId(), course.Price, course.Id);
+            await _mediator.Send(command);
+
+            return CustomResponse(HttpStatusCode.NoContent);
+        }
+
+        /// <summary>
+        /// Remover curso
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns>Retorna que o curso foi removido, status 204</returns>
+        [Authorize(Roles = "ADMIN")]
+        [HttpDelete("remove/{id:guid}")]
+        [ProducesResponseType(typeof(CourseViewModel), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> Remove(Guid id)
+        {
+            var command = new RemoveCourseCommand(id);
+            await _mediator.Send(command);
+
+            return CustomResponse(HttpStatusCode.NoContent);
+        }
+
+        /// <summary>
         /// Faz o pagamento do curso referenciado nos parametro 
         /// </summary>
         /// <param name="courseId"></param>
