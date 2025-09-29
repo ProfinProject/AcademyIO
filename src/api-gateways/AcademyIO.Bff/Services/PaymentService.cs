@@ -24,15 +24,12 @@ namespace AcademyIO.Bff.Services
 
         public async Task<bool> PaymentExists(Guid courseId)
         {
-            var token = _aspNetUser.GetUserToken();
-
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-            var response = await _httpClient.GetAsync($"/api/payments/exists?courseId={courseId}");
+            var studentId = _aspNetUser.GetUserId();
+            var response = await _httpClient.GetAsync($"/api/payments/exists?courseId={courseId}&studentId={studentId}");
 
             var exists = false;
-            if (!ManageHttpResponse(response)) exists = await response.Content.ReadFromJsonAsync<bool>();
+            if (ManageHttpResponse(response))
+                exists = await response.Content.ReadFromJsonAsync<bool>();
 
             return exists;
         }

@@ -19,7 +19,7 @@ builder.Services.AddMessageBusConfiguration(builder.Configuration);
 var app = builder.Build();
 
 app.UseSwaggerSetup();
-
+app.UseApiCoreConfiguration(app.Environment);
 app.UseDbMigrationHelper();
 
 app.Run();

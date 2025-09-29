@@ -12,9 +12,8 @@ namespace AcademyIO.Bff.Services
     public class StudentService : Service, IStudentService
     {
         private readonly HttpClient _httpClient;
-        private readonly IPaymentService _paymentService;
 
-        public StudentService(HttpClient httpClient, IOptions<AppServicesSettings> settings, IPaymentService paymentService)
+        public StudentService(HttpClient httpClient, IOptions<AppServicesSettings> settings)
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(settings.Value.StudentUrl);
@@ -22,23 +21,11 @@ namespace AcademyIO.Bff.Services
 
         public async Task<ResponseResult> RegisterToCourse(Guid courseId)
         {
-            if (await _paymentService.PaymentExists(courseId))
-            {
-                var response = await _httpClient.PostAsync($"register-to-course/{courseId}", null);
+            var response = await _httpClient.PostAsync($"/api/student/register-to-course/{courseId}", null);
 
-                if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
+            if (!ManageHttpResponse(response)) return await DeserializeResponse<ResponseResult>(response);
 
-                return Ok();
-            }
-            else
-            {
-                var paymentNotFound = new ResponseResult
-                {
-                    Status = 400,
-                    Errors = new ResponseErrorMessages { Messages = new List<string> { "Pagamento inexiste para este curso." } }
-                };
-                return paymentNotFound;
-            }
+            return Ok();
         }
     }
 }

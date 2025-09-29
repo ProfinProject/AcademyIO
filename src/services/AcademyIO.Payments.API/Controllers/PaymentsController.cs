@@ -56,9 +56,9 @@ public class PaymentsController : MainController
 
 
     [HttpGet("exists")]
-    public async Task<ActionResult<bool>> PaymentExists(Guid courseId)
+    public async Task<ActionResult<bool>> PaymentExists(Guid courseId, Guid studentId)
     {
-        var exists = await _context.Set<Payment>().AnyAsync(p => p.StudentId == _aspNetUser.GetUserId() && p.CourseId == courseId && !p.Deleted);
+        var exists = await _context.Set<Payment>().AnyAsync(p => p.StudentId == studentId && p.CourseId == courseId && !p.Deleted);
         return Ok(exists);
     }
 
