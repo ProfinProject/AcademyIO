@@ -11,6 +11,7 @@ namespace AcademyIO.Bff.Services
     {
         Task<ResponseResult> RegisterToCourse(Guid courseId);
         Task<List<RegistrationViewModel>> GetRegistration();
+        Task<List<RegistrationViewModel>> GetAllRegistrations();
     }
 
     public class StudentService : Service, IStudentService
@@ -23,6 +24,15 @@ namespace AcademyIO.Bff.Services
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(settings.Value.StudentUrl);
             _aspNetUser = aspNetUser;
+        }
+
+        public async Task<List<RegistrationViewModel>> GetAllRegistrations()
+        {
+            var response = await _httpClient.GetAsync($"/api/student/get-all-registrations");
+
+            ManageHttpResponse(response);
+
+            return await DeserializeResponse<List<RegistrationViewModel>>(response);
         }
 
         public async Task<List<RegistrationViewModel>> GetRegistration()

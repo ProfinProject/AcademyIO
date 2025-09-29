@@ -8,5 +8,6 @@ namespace AcademyIO.Students.API.Models
         Task<Registration> FinishCourse(Guid studentId, Guid courseId);
         Registration AddRegistration(Guid studentId, Guid courseId);
         List<Registration> GetRegistrationByStudent(Guid studentId);
+        List<Registration> GetAllRegistrations();
     }
 }

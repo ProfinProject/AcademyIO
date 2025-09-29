@@ -47,5 +47,14 @@ namespace AcademyIO.Bff.Controllers
             var response = await _studentService.GetRegistration();
             return CustomResponse(response);
         }
+
+        [Authorize(Roles = "ADMIN")]
+        [HttpGet]
+        [Route("get-all-registrations")]
+        public async Task<IActionResult> GetAll()
+        {
+            var response = await _studentService.GetAllRegistrations();
+            return CustomResponse(response);
+        }
     }
 }

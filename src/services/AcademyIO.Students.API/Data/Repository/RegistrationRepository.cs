@@ -46,5 +46,10 @@ namespace AcademyIO.Students.API.Data.Repository
         {
             return _dbSet.Where(x => x.StudentId == studentId).ToList();
         }
+
+        public List<Registration> GetAllRegistrations()
+        {
+            return _dbSet.ToList();
+        }
     }
 }
