@@ -35,10 +35,30 @@ Swagger 📄
 
 src/
 
- ├── AcademyIO.API/      # API RESTful  
- ├── AcademyIO.Core/     # Regras de negócio e validações  
- ├── ManagementCourses/   # Bounded context de Cursos  
- ├── ManagementStudentsy/ # Bounded context de alunos  
+ ├── ApiGateways/
+ │    └── AcademyIO.Bff/              # API Gateway (Backend For Frontend)
+ │
+ ├── BuildingBlocks/                  # Blocos reutilizáveis
+ │    ├── Core/
+ │    │    └── AcademyIO.Core/        # Entidades base, interfaces, validações
+ │    ├── MessageBus/
+ │    │    └── AcademyIO.MessageBus/  # Comunicação assíncrona entre serviços (mensageria)
+ │    └── Services/
+ │         └── AcademyIO.WebAPI.Core/ # Middlewares, Identity, extensões para APIs
+ │
+ ├── Services/                        # Microsserviços da aplicação
+ │    ├── Auth/
+ │    │    └── AcademyIO.Auth.API/    # Serviço de Autenticação e Autorização (JWT, Identity)
+ │    ├── Courses/
+ │    │    └── AcademyIO.Courses.API/ # Serviço de Cursos
+ │    ├── Payments/
+ │    │    └── AcademyIO.Payments.API/# Serviço de Pagamentos
+ │    └── Students/
+ │         └── AcademyIO.Students.API/# Serviço de Alunos
+ │
+ ├── Tests/                           # Projetos de teste automatizados
+ │
+ └── Web/                             # (provavelmente) Frontend 
  
 README.md             # Documentação do projeto  
 FEEDBACK.md           # Consolidação de feedbacks  
