@@ -35,29 +35,30 @@ Swagger 📄
 
 src/<br>
  ├── ApiGateways/<br>
- │    └── AcademyIO.Bff/              # API Gateway (Backend For Frontend)<br>
+ │    └── **AcademyIO.Bff/**              # API Gateway (Backend For Frontend)<br>
  │<br>
- ├── BuildingBlocks/                  # Blocos reutilizáveis<br>
+ ├── BuildingBlocks/                      # Blocos reutilizáveis<br>
  │    ├── Core/<br>
- │    │    └── AcademyIO.Core/        # Entidades base, interfaces, validações<br>
+ │    │    └── **AcademyIO.Core/**        # Entidades base, interfaces, validações<br>
  │    ├── MessageBus/<br>
- │    │    └── AcademyIO.MessageBus/  # Comunicação assíncrona entre serviços (mensageria)<br>
+ │    │    └── **AcademyIO.MessageBus/**  # Comunicação assíncrona entre serviços (mensageria)<br>
  │    └── Services/<br>
- │         └── AcademyIO.WebAPI.Core/ # Middlewares, Identity, extensões para APIs<br>
+ │         └── **AcademyIO.WebAPI.Core/** # Middlewares, Identity, extensões para APIs<br>
  │<br>
- ├── Services/                        # Microsserviços da aplicação<br>
+ ├── Services/                            # Microsserviços da aplicação<br>
  │    ├── Auth/<br>
- │    │    └── AcademyIO.Auth.API/    # Serviço de Autenticação e Autorização (JWT, Identity)<br>
+ │    │    └── **AcademyIO.Auth.API/**    # Serviço de Autenticação e Autorização (JWT, Identity)<br>
  │    ├── Courses/<br>
- │    │    └── AcademyIO.Courses.API/ # Serviço de Cursos<br>
+ │    │    └── **AcademyIO.Courses.API/** # Serviço de Cursos<br>
  │    ├── Payments/<br>
- │    │    └── AcademyIO.Payments.API/# Serviço de Pagamentos<br>
+ │    │    └── **AcademyIO.Payments.API/**# Serviço de Pagamentos<br>
  │    └── Students/<br>
- │         └── AcademyIO.Students.API/# Serviço de Alunos<br>
+ │         └── **AcademyIO.Students.API/**# Serviço de Alunos<br>
  │<br>
- ├── Tests/                           # Projetos de teste automatizados<br>
+ ├── **Tests/**                           # Projetos de teste automatizados<br>
  │<br>
- └── Web/                             #  Frontend <br>
+ └── **Web/**                             # Frontend
+
 
  
 README.md             # Documentação do projeto  
