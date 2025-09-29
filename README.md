@@ -62,10 +62,8 @@ cd AcademyIO
 No arquivo appsettings.json, configure a string de conexão para SQL Server ou SQLite.  
 Execute o projeto para que a configuração do Seed crie e popule o banco automaticamente.
 
-3️⃣ **Executar a API (.NET 8.0):**  
-cd AcademyIO/src/AcademyIO.API  
-dotnet run  
-📌 Acesse a API em: http://localhost:5005 ou https://localhost:7092 (HTTPS).
+3️⃣ **Executar as APIs (.NET 8.0):**  
+-Startup multiple projects escolhendo as APIs: Auth, Course, Student, Payment, e o BFF para startar.
 
 
 🔑 **Configuração de Segurança**  
@@ -99,7 +97,7 @@ docker run -d `
   portainer/portainer-ce:latest
 
 🧱 CMD (uma linha)
-docker stop portainer >nul 2>&1 && docker rm portainer >nul 2>&1 && docker volume create portainer_data && docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+-docker stop portainer >nul 2>&1 && docker rm portainer >nul 2>&1 && docker volume create portainer_data && docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 
 
 🌐 Acesse: https://localhost:9443
