@@ -31,34 +31,34 @@ Back-End:
 **Documentação:**
 Swagger 📄
 
-📂 **Estrutura do Projeto**
+📂 **Estrutura do Projeto**  
 
-src/
+src/<br>
+ ├── ApiGateways/<br>
+ │    └── AcademyIO.Bff/              # API Gateway (Backend For Frontend)<br>
+ │<br>
+ ├── BuildingBlocks/                  # Blocos reutilizáveis<br>
+ │    ├── Core/<br>
+ │    │    └── AcademyIO.Core/        # Entidades base, interfaces, validações<br>
+ │    ├── MessageBus/<br>
+ │    │    └── AcademyIO.MessageBus/  # Comunicação assíncrona entre serviços (mensageria)<br>
+ │    └── Services/<br>
+ │         └── AcademyIO.WebAPI.Core/ # Middlewares, Identity, extensões para APIs<br>
+ │<br>
+ ├── Services/                        # Microsserviços da aplicação<br>
+ │    ├── Auth/<br>
+ │    │    └── AcademyIO.Auth.API/    # Serviço de Autenticação e Autorização (JWT, Identity)<br>
+ │    ├── Courses/<br>
+ │    │    └── AcademyIO.Courses.API/ # Serviço de Cursos<br>
+ │    ├── Payments/<br>
+ │    │    └── AcademyIO.Payments.API/# Serviço de Pagamentos<br>
+ │    └── Students/<br>
+ │         └── AcademyIO.Students.API/# Serviço de Alunos<br>
+ │<br>
+ ├── Tests/                           # Projetos de teste automatizados<br>
+ │<br>
+ └── Web/                             # (provavelmente) Frontend / SPA ou apps web<br>
 
- ├── ApiGateways/
- │    └── AcademyIO.Bff/              # API Gateway (Backend For Frontend)
- │
- ├── BuildingBlocks/                  # Blocos reutilizáveis
- │    ├── Core/
- │    │    └── AcademyIO.Core/        # Entidades base, interfaces, validações
- │    ├── MessageBus/
- │    │    └── AcademyIO.MessageBus/  # Comunicação assíncrona entre serviços (mensageria)
- │    └── Services/
- │         └── AcademyIO.WebAPI.Core/ # Middlewares, Identity, extensões para APIs
- │
- ├── Services/                        # Microsserviços da aplicação
- │    ├── Auth/
- │    │    └── AcademyIO.Auth.API/    # Serviço de Autenticação e Autorização (JWT, Identity)
- │    ├── Courses/
- │    │    └── AcademyIO.Courses.API/ # Serviço de Cursos
- │    ├── Payments/
- │    │    └── AcademyIO.Payments.API/# Serviço de Pagamentos
- │    └── Students/
- │         └── AcademyIO.Students.API/# Serviço de Alunos
- │
- ├── Tests/                           # Projetos de teste automatizados
- │
- └── Web/                             # (provavelmente) Frontend 
  
 README.md             # Documentação do projeto  
 FEEDBACK.md           # Consolidação de feedbacks  
