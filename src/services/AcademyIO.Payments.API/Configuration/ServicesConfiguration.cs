@@ -19,7 +19,6 @@ namespace AcademyIO.Payments.API.Configuration
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-
             services.AddScoped<INotifier, Notifier>();
 
             services.AddScoped<IPaymentQuery, PaymentQuery>();

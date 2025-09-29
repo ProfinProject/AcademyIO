@@ -15,7 +15,7 @@ namespace AcademyIO.Courses.API.Configuration
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Academy IO",
+                    Title = "Academy IO - Courses",
                     Description = "AcademyIO Swagger",
                     Contact = new OpenApiContact { Name = "Academy IO Team", Email = "admin@AcademyIO.com" },
                     License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://github.com/ProfinProject/AcademyIO") }
