@@ -57,7 +57,7 @@ src/<br>
  │<br>
  ├── Tests/                           # Projetos de teste automatizados<br>
  │<br>
- └── Web/                             # (provavelmente) Frontend / SPA ou apps web<br>
+ └── Web/                             #  Frontend <br>
 
  
 README.md             # Documentação do projeto  
