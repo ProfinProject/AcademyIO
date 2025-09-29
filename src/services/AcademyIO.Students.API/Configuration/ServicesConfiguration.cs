@@ -1,6 +1,7 @@
 ﻿using AcademyIO.Core.Interfaces.Services;
 using AcademyIO.Core.Notifications;
 using AcademyIO.Students.API.Application.Commands;
+using AcademyIO.Students.API.Application.Queries;
 using AcademyIO.Students.API.Data.Repository;
 using AcademyIO.Students.API.Models;
 using AcademyIO.Students.API.Services;
@@ -22,6 +23,7 @@ namespace AcademyIO.Students.API.Configuration
         {
             services.AddScoped<INotifier, Notifier>();
 
+            services.AddScoped<IRegistrationQuery, RegistrationQuery>();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddRegistrationCommand>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<AddUserCommand>());
             services.AddHostedService<UserRegisteredIntegrationHandler>();

@@ -1,5 +1,6 @@
 ﻿using AcademyIO.Bff.Services;
 using AcademyIO.WebAPI.Core.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademyIO.Bff.Controllers
@@ -35,6 +36,15 @@ namespace AcademyIO.Bff.Controllers
 
             var response = await _studentService.RegisterToCourse(courseId);
 
+            return CustomResponse(response);
+        }
+
+        [Authorize(Roles = "STUDENT")]
+        [HttpGet]
+        [Route("get-registration")]
+        public async Task<IActionResult> GetRegistration()
+        {
+            var response = await _studentService.GetRegistration();
             return CustomResponse(response);
         }
     }
