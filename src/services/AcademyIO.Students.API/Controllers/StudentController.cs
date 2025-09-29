@@ -40,14 +40,25 @@ namespace AcademyIO.Students.API.Controllers
         }
 
         /// <summary>
-        /// Matrícula o aluno ao curso, e as aulas referente a esse curso
+        /// Retorna as matrículas do aluno logado 
         /// </summary>
-        /// <param name="courseId"></param>
-        /// <returns>Se o curso existe e o aluno já pagou o curso, retorna 201 aluno registrado</returns>
+        /// <param name="studentId"></param>
+        /// <returns>Lista de matriculas</returns>
         [HttpGet("get-registration/{studentId:guid}")]
         public IActionResult GetRegistration(Guid studentId)
         {
             var students = _registrationQuery.GetByStudent(studentId);
+            return CustomResponse(students);
+        }
+
+        /// <summary>
+        /// Retorna todas as matrículas
+        /// </summary>
+        /// <returns>Lista de matriculas</returns>
+        [HttpGet("get-all-registrations")]
+        public IActionResult GetAllRegistrations()
+        {
+            var students = _registrationQuery.GetAllRegistrations();
             return CustomResponse(students);
         }
     }

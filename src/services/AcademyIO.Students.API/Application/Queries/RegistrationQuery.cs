@@ -25,5 +25,20 @@ namespace AcademyIO.Students.API.Application.Queries
                 Status = c.Status
             }).ToList();
         }
+
+        public List<RegistrationViewModel> GetAllRegistrations()
+        {
+            var registrations = _registrationRepository.GetAllRegistrations();
+
+            return registrations.Select(c => new RegistrationViewModel
+            {
+                Id = c.Id,
+                CourseId = c.CourseId,
+                StudentId = c.StudentId,
+                RegistrationTime = c.RegistrationTime,
+                Status = c.Status
+            }).ToList();
+        }
+        
     }
 }
