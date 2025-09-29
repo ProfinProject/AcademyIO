@@ -41,5 +41,10 @@ namespace AcademyIO.Students.API.Data.Repository
         {
             return _dbSet.Any(x => x.StudentId == studentId && x.CourseId == courseId);
         }
+
+        public List<Registration> GetRegistrationByStudent(Guid studentId)
+        {
+            return _dbSet.Where(x => x.StudentId == studentId).ToList();
+        }
     }
 }
