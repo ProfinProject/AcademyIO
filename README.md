@@ -63,7 +63,7 @@ No arquivo appsettings.json, configure a string de conexão para SQL Server ou S
 Execute o projeto para que a configuração do Seed crie e popule o banco automaticamente.
 
 3️⃣ **Executar as APIs (.NET 8.0):**  
--Startup multiple projects escolhendo as APIs: Auth, Course, Student, Payment, e o BFF para startar.
+-Startup multiple projects escolhendo as APIs: Auth, Course, Student, Payment, e o BFF para startar. (Você precisa configurar a parte referente ao RabbitMQ explicada abaixo)
 
 
 🔑 **Configuração de Segurança**  
