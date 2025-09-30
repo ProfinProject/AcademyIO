@@ -14,25 +14,26 @@ import { CadastrarAula } from './administrador/cadastrar-aula/cadastrar-aula';
 import { GerenciarAulas } from './administrador/gerenciar-aulas/gerenciar-aulas';
 import { MeusCursos } from './administrador/meus-cursos/meus-cursos';
 
+import { authGuard } from './core/auth/guards/auth.guard';
 
 
 export const routes: Routes = [
-    {path:'home', component: Home}
-     ,{path:'sobre', component: Sobre}
-    ,{path:'lista-cursos', component: Cursos}
-    ,{path:'Contato', component: Contato}
-    ,{path:'login', component: Login}
-    ,{path:'registrar', component: Registrar}
-    ,{path:'ementa', component: Ementa}
+  { path: 'home', component: Home }
+  , { path: 'sobre', component: Sobre }
+  , { path: 'lista-cursos', component: Cursos }
+  , { path: 'Contato', component: Contato }
+  , { path: 'login', component: Login }
+  , { path: 'registrar', component: Registrar }
+  , { path: 'ementa', component: Ementa }
 
-        ,{path:'painel-administrador', component: PainelAdministrativo}
-        ,{path:'cadastrar-curso', component: CadastrarCurso}
-        ,{path:'cadastrar-aula', component: CadastrarAula}
-        ,{path:'gerenciar-aulas', component: GerenciarAulas}
-        ,{path:'meus-cursos', component: MeusCursos}
-    ,{path:'not-found', component: NotFound}
+  , { path: 'painel-administrador', component: PainelAdministrativo, canActivate: [authGuard] }
+  , { path: 'cadastrar-curso', component: CadastrarCurso, canActivate: [authGuard] }
+  , { path: 'cadastrar-aula', component: CadastrarAula, canActivate: [authGuard] }
+  , { path: 'gerenciar-aulas', component: GerenciarAulas, canActivate: [authGuard] }
+  , { path: 'meus-cursos', component: MeusCursos, canActivate: [authGuard] }
+  , { path: 'not-found', component: NotFound }
 
 
-    ,{ path: '', redirectTo: '/home', pathMatch: 'full' }
-    ,{ path: '**', redirectTo: '/not-found' } 
+  , { path: '', redirectTo: '/home', pathMatch: 'full' }
+  , { path: '**', redirectTo: '/not-found' }
 ];
