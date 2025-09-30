@@ -1,73 +1,80 @@
-<section class="py-5">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <div class="bg-white p-5 rounded-4 shadow-sm border" style="border-top: 4px solid #02a102;">
-          <div class="text-center mb-4">
-            <div class="d-inline-block p-3 rounded-circle mb-3" style="background-color: rgba(2, 161, 2, 0.1);">
-              <i class="fas fa-user-plus fa-2x" style="color: #02a102;"></i>
-            </div>
-            <h2 class="fw-bold text-dark">Crie sua conta</h2>
-            <p class="text-muted">Junte-se à AcademyIO e comece sua jornada de aprendizado hoje!</p>
-          </div>
+<section class="vh-100" style="background-color: #f8f9fa;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
 
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="mb-3">
-              <label for="nome" class="form-label fw-medium">Nome completo</label>
-              <div class="input-group">
-                <span class="input-group-text" style="background-color: #f8f9fa; border-right: none;">
-                  <i class="fas fa-user" style="color: #6c757d;"></i>
-                </span>
-                <input type="text" formControlName="nome" class="form-control" id="nome" placeholder="Seu nome">
+            <h3 class="mb-5">Criar Conta</h3>
+
+            <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline text-start">
+                    <label class="form-label" for="firstName">Nome</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control form-control-lg"
+                      [(ngModel)]="credentials.firstName" required minlength="2" />
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline text-start">
+                    <label class="form-label" for="lastName">Sobrenome</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control form-control-lg"
+                      [(ngModel)]="credentials.lastName" required minlength="2" />
+                  </div>
+                </div>
               </div>
-            </div>
 
-            <div class="mb-3">
-              <label for="email" class="form-label fw-medium">E-mail</label>
-              <div class="input-group">
-                <span class="input-group-text" style="background-color: #f8f9fa; border-right: none;">
-                  <i class="fas fa-envelope" style="color: #6c757d;"></i>
-                </span>
-                <input type="email" formControlName="email" class="form-control" id="email" placeholder="seu@email.com">
+              <div class="form-outline mb-4 text-start">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control form-control-lg"
+                  [(ngModel)]="credentials.email" required email />
               </div>
-            </div>
 
-            <div class="mb-3">
-              <label for="senha" class="form-label fw-medium">Senha</label>
-              <div class="input-group">
-                <span class="input-group-text" style="background-color: #f8f9fa; border-right: none;">
-                  <i class="fas fa-lock" style="color: #6c757d;"></i>
-                </span>
-                <input type="password" formControlName="senha" class="form-control" id="senha" placeholder="Mínimo 6 caracteres">
+              <div class="form-outline mb-4 text-start">
+                <label class="form-label" for="dateOfBirth">Data de Nascimento</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control form-control-lg"
+                  [(ngModel)]="credentials.dateOfBirth" required />
               </div>
-            </div>
 
-            <div class="mb-4">
-              <label for="confirmar-senha" class="form-label fw-medium">Confirmar senha</label>
-              <div class="input-group">
-                <span class="input-group-text" style="background-color: #f8f9fa; border-right: none;">
-                  <i class="fas fa-lock" style="color: #6c757d;"></i>
-                </span>
-                <input type="password" formControlName="confirmarSenha" class="form-control" id="confirmarSenha" placeholder="Repita sua senha">
+              <div class="form-outline mb-4 text-start">
+                <label class="form-label" for="password">Senha</label>
+                <input type="password" id="password" name="password" class="form-control form-control-lg"
+                  [(ngModel)]="credentials.password" required minlength="6" />
               </div>
-            </div>
 
-            <div class="d-grid mb-3">
-              <button type="submit" class="btn py-2 rounded-pill fw-bold"
-                      style="background: linear-gradient(135deg, #02a102, #017a01); color: white; border: none; box-shadow: 0 4px 10px rgba(2, 161, 2, 0.25);">
-                Cadastrar
+              <div class="form-outline mb-4 text-start">
+                <label class="form-label" for="confirmPassword">Confirmar Senha</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control form-control-lg"
+                  [(ngModel)]="credentials.confirmPassword" required /> @if (passwordMismatch) {
+                <div class="text-danger small mt-1">As senhas não coincidem.</div>
+                }
+              </div>
+
+              @if (errorMessage) {
+              <div class="alert alert-danger mt-3">
+                {{ errorMessage }}
+              </div>
+              } @if (successMessage) {
+
+              <div class="alert alert-success mt-3">
+                {{ successMessage }}
+              </div>
+              }
+
+              <button class="btn btn-lg btn-block w-100" [disabled]="!registerForm.form.valid" type="submit"
+                style="background-color: #02a102; color: white;">
+                Registrar
               </button>
-            </div>
+            </form>
 
-            <div class="text-center">
-              <p class="mb-0 text-muted">
-                Já tem conta?
-                <a href="/login" class="text-decoration-none" style="color: #02a102; font-weight: 600;">
-                  Faça login
-                </a>
-              </p>
-            </div>
-          </form>
+            <hr class="my-4">
+
+            <p class="text-center">Já tem uma conta?
+              <a routerLink="/login" style="color: #02a102; text-decoration: none; font-weight: 500;">Faça login</a>
+            </p>
+
+          </div>
         </div>
       </div>
     </div>

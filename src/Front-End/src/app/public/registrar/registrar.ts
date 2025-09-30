@@ -1,38 +1,53 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/auth/services/auth.service';
+import { RegisterCredentials } from '../../core/auth/models/auth.interfaces';
 
 @Component({
   selector: 'app-registrar',
-  imports: [ReactiveFormsModule, HttpClientModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './registrar.html',
   styleUrl: './registrar.css'
 })
 export class Registrar {
-loginForm: FormGroup;
+  credentials: RegisterCredentials = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    dateOfBirth: '',
+    password: '',
+    confirmPassword: ''
+  };
+  errorMessage = '';
+  successMessage = '';
+  passwordMismatch = false;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {
-    this.loginForm = this.fb.group({
-      nome: [''],
-      email: [''],
-      senha: [''],
-      confirmarSenha: ['']
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+  onSubmit(): void {
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.passwordMismatch = this.credentials.password !== this.credentials.confirmPassword;
+
+    if (this.passwordMismatch) {
+      this.errorMessage = 'As senhas não coincidem.';
+      return;
+    }
+
+    this.authService.register(this.credentials).subscribe({
+      next: () => {
+        this.successMessage = 'Cadastro realizado com sucesso! Redirecionando para o login...';
+        setTimeout(() => this.router.navigate(['/login']), 2000);
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Ocorreu um erro ao tentar se registrar. Tente novamente.';
+      }
     });
-  }
-
-  onSubmit() {
-    const loginData = this.loginForm.value;
-    this.http.post('https://localhost:7234/api/auth/new-account', loginData)
-      .subscribe({
-        next: (response: any) => {
-          localStorage.setItem('accessToken', response.accessToken);
-          this.router.navigate(['/painel-administrador']);
-          console.log('Cadastro realizado com sucesso!');
-        },
-        error: (err) => {
-          console.error('Erro ao fazer cadastro:', err);
-        }
-      });
   }
 }

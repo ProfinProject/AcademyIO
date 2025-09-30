@@ -1,37 +1,55 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/auth/services/auth.service';
+import { LoginCredentials } from '../../core/auth/models/auth.interfaces';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, HttpClientModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrls: ['./login.css']
 })
 export class Login {
-  loginForm: FormGroup;
+  credentials: LoginCredentials = {
+    email: '',
+    password: ''
+  };
+  errorMessage = '';
+  isLoading = false;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {
-    this.loginForm = this.fb.group({
-      email: [''],
-      password: ['']
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
+
+  onSubmit(): void {
+    this.errorMessage = '';
+    this.isLoading = true;
+    this.authService.login(this.credentials).subscribe({
+      next: () => {
+        this.isLoading = false;
+        // Verifica se há
+        //  uma URL de retorno nos parâmetros da rota
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        // Redireciona para a URL de retorno ou para o painel do administrador como padrão
+        this.router.navigateByUrl(returnUrl || '/painel-administrador');
+
+      },
+      error: (err) => {
+        this.isLoading = false;
+        console.error('Login error:', err);
+        // A mensagem de erro agora vem diretamente do serviço.
+        if (err instanceof Error) {
+          this.errorMessage = err.message;
+        } else {
+          this.errorMessage = 'Ocorreu um erro inesperado. Tente novamente.';
+        }
+
+      }
     });
   }
-
-  onSubmit() {
-    const loginData = this.loginForm.value;
-    this.http.post('https://localhost:7234/api/auth/auth', loginData)
-      .subscribe({
-        next: (response: any) => {
-          localStorage.setItem('accessToken', response.accessToken);
-          this.router.navigate(['/painel-administrador'])
-          console.log('Login realizado com sucesso!');
-        },
-        error: (err) => {
-          console.error('Erro ao fazer login:', err);
-        }
-      });
-  }
 }
-

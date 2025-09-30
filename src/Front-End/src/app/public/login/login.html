@@ -11,15 +11,15 @@
             <p class="text-muted">Acesse sua conta para continuar seus estudos.</p>
           </div>
 
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
             <div class="mb-3">
               <label for="email" class="form-label fw-medium">E-mail</label>
               <div class="input-group">
                 <span class="input-group-text" style="background-color: #f8f9fa; border-right: none;">
                   <i class="fas fa-envelope" style="color: #6c757d;"></i>
                 </span>
-                <!-- <input type="email" class="form-control" id="email" placeholder="seu@email.com"> -->
-                <input formControlName="email" class="form-control" id="email" type="email" placeholder="seu@email.com" required />
+                <input type="email" id="email" name="email" class="form-control form-control-lg"
+                  [(ngModel)]="credentials.email" required email />
               </div>
             </div>
 
@@ -34,21 +34,36 @@
                 <span class="input-group-text" style="background-color: #f8f9fa; border-right: none;">
                   <i class="fas fa-lock" style="color: #6c757d;"></i>
                 </span>
-                <input formControlName="password" class="form-control" type="password" placeholder="Senha" required />
+                <input type="password" id="password" name="password" class="form-control form-control-lg"
+                  [(ngModel)]="credentials.password" required />
               </div>
             </div>
 
+            @if (errorMessage) {
+            <div class="alert alert-danger mt-3">
+              {{ errorMessage }}
+            </div>
+            }
+
             <div class="d-grid mb-3">
-              <button type="submit" class="btn py-2 rounded-pill fw-bold"
-                      style="background: linear-gradient(135deg, #02a102, #017a01); color: white; border: none; box-shadow: 0 4px 10px rgba(2, 161, 2, 0.25);">
-                Entrar
+              <button type="submit"
+                class="btn py-2 rounded-pill fw-bold d-flex align-items-center justify-content-center"
+                [disabled]="isLoading"
+                style="background: linear-gradient(135deg, #02a102, #017a01); color: white; border: none; box-shadow: 0 4px 10px rgba(2, 161, 2, 0.25);">
+                @if (isLoading) {
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                }
+                <span>{{ isLoading ? 'Entrando...' : 'Entrar' }}</span>
               </button>
             </div>
+
+
+            <hr class="my-4">
 
             <div class="text-center">
               <p class="mb-0 text-muted">
                 Não tem conta?
-                <a href="/cadastro" class="text-decoration-none" style="color: #02a102; font-weight: 600;">
+                <a href="/registrar" class="text-decoration-none" style="color: #02a102; font-weight: 600;">
                   Cadastre-se grátis
                 </a>
               </p>
