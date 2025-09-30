@@ -13,6 +13,16 @@ namespace AcademyIO.Auth.API.Configuration
             services.AddScoped<IAspNetUser, AspNetUser>();
             services.AddDefaultHealthCheck(configuration);
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Total",
+                    builder =>
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
+            });
+
             return services;
         }
 
@@ -31,6 +41,8 @@ namespace AcademyIO.Auth.API.Configuration
                 app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("Total");
 
             //TODO ???
             //app.UseAuthConfiguration();
