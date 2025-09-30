@@ -37,9 +37,9 @@ namespace AcademyIO.Courses.API.Controllers
         /// <param name="courseId"></param>
         /// <returns><see cref="IEnumerable{LessonViewModel}"/>Retorna uma lista de aulas e suas informações</returns>
         [AllowAnonymous]
-        [HttpGet("get-by-courseId")]
+        [HttpGet("get-by-courseId/{courseId:guid}")]
         [ProducesResponseType(typeof(IEnumerable<LessonViewModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<LessonViewModel>>> GetByCourseId([FromQuery] Guid courseId)
+        public async Task<ActionResult<IEnumerable<LessonViewModel>>> GetByCourseId(Guid courseId)
         {
             var lessons = await lessonQuery.GetByCourseId(courseId);
             return CustomResponse(lessons);

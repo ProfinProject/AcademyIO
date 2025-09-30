@@ -1,4 +1,5 @@
 ﻿using AcademyIO.Students.API.Application.Commands;
+using AcademyIO.Students.API.Application.Queries;
 using AcademyIO.WebAPI.Core.Controllers;
 using AcademyIO.WebAPI.Core.User;
 using MediatR;
@@ -13,11 +14,13 @@ namespace AcademyIO.Students.API.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IAspNetUser _user;
+        private readonly IRegistrationQuery _registrationQuery;
 
-        public StudentController(IMediator mediator, IAspNetUser user)
+        public StudentController(IMediator mediator, IAspNetUser user, IRegistrationQuery registrationQuery)
         {
             _mediator = mediator;
             _user = user;
+            _registrationQuery = registrationQuery;
         }
 
         /// <summary>
@@ -37,16 +40,26 @@ namespace AcademyIO.Students.API.Controllers
         }
 
         /// <summary>
-        /// Matrícula o aluno ao curso, e as aulas referente a esse curso
+        /// Retorna as matrículas do aluno logado 
         /// </summary>
-        /// <param name="courseId"></param>
-        /// <returns>Se o curso existe e o aluno já pagou o curso, retorna 201 aluno registrado</returns>
-        [HttpGet("get-registration/{courseId:guid}")]
-        public async Task<IActionResult> GetRegistration(Guid courseId)
+        /// <param name="studentId"></param>
+        /// <returns>Lista de matriculas</returns>
+        [HttpGet("get-registration/{studentId:guid}")]
+        public IActionResult GetRegistration(Guid studentId)
         {
-            //to do get registration FABIANO
+            var students = _registrationQuery.GetByStudent(studentId);
+            return CustomResponse(students);
+        }
 
-            return CustomResponse(HttpStatusCode.OK);
+        /// <summary>
+        /// Retorna todas as matrículas
+        /// </summary>
+        /// <returns>Lista de matriculas</returns>
+        [HttpGet("get-all-registrations")]
+        public IActionResult GetAllRegistrations()
+        {
+            var students = _registrationQuery.GetAllRegistrations();
+            return CustomResponse(students);
         }
     }
 }

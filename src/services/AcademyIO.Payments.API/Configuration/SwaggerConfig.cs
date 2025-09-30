@@ -10,7 +10,7 @@ namespace AcademyIO.Payments.API.Configuration
             {
                 c.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Title = "Academy IO Payments API",
+                    Title = "Academy IO - Payments API",
                     Description = "Esta API faz parte do curso ASP.NET Core Enterprise Applications.",
                     Contact = new OpenApiContact() { Name = "Eduardo Pires", Email = "contato@desenvolvedor.io" },
                     License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
@@ -51,7 +51,8 @@ namespace AcademyIO.Payments.API.Configuration
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AcademyIO API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Academy IO - Payments API");
+                c.DocumentTitle = "Academy IO - Payments API";
             });
 
             return app;
