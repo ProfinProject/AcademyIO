@@ -1,12 +1,17 @@
-﻿using AcademyIO.Core.Interfaces.Services;
+﻿using AcademyIO.Core.DomainObjects;
+using AcademyIO.Core.Interfaces.Services;
+using AcademyIO.Core.Messages.Integration;
 using AcademyIO.Courses.API.Application.Commands;
 using AcademyIO.Courses.API.Application.Queries;
 using AcademyIO.Courses.API.Application.Queries.ViewModels;
 using AcademyIO.Courses.API.Models.ViewModels;
+using AcademyIO.MessageBus;
 using AcademyIO.WebAPI.Core.Controllers;
 using AcademyIO.WebAPI.Core.User;
+using EasyNetQ;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -16,7 +21,8 @@ namespace AcademyIO.Courses.API.Controllers
     [ApiController]
     public class CoursesController(IMediator _mediator,
                                 ICourseQuery courseQuery, 
-                                IAspNetUser aspNetUser) : MainController
+                                IAspNetUser aspNetUser,
+                                IMessageBus _bus) : MainController
     {
         /// <summary>
         /// Retorna todos os cursos registrados
@@ -107,14 +113,19 @@ namespace AcademyIO.Courses.API.Controllers
         /// <returns>Retorna que o pagamento foi feito, status 201</returns>
         [Authorize(Roles = "STUDENT")]
         [HttpPost("{courseId:guid}/make-payment")]
-        public async Task<IActionResult> MakePayment(Guid courseId, [FromBody] PaymentViewModel paymentViewModel)
+        public async Task<ResponseMessage> MakePayment(Guid courseId, [FromBody] PaymentViewModel paymentViewModel)
         {
-            var command = new ValidatePaymentCourseCommand(courseId, aspNetUser.GetUserId(), paymentViewModel.CardName,
+            var paymentRegistered = new PaymentRegisteredIntegrationEvent(courseId, aspNetUser.GetUserId(), paymentViewModel.CardName,
                                                         paymentViewModel.CardNumber, paymentViewModel.CardExpirationDate,
                                                         paymentViewModel.CardCVV);
-            await _mediator.Send(command);
-
-            return CustomResponse(HttpStatusCode.Created);
+            try
+            {
+                return await _bus.RequestAsync<PaymentRegisteredIntegrationEvent, ResponseMessage>(paymentRegistered);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
