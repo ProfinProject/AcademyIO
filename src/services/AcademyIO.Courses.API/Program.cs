@@ -1,5 +1,5 @@
-using AcademyIO.WebAPI.Core.Configuration;
 using AcademyIO.Courses.API.Configuration;
+using AcademyIO.WebAPI.Core.Configuration;
 using AcademyIO.WebAPI.Core.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +11,8 @@ builder.Services.AddContext(builder.Configuration);
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddSwaggerConfiguration();
+
+builder.Services.AddMessageBusConfiguration(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
