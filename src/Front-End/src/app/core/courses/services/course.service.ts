@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Course } from '../models/course.interface';
+import { environment } from '../../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
-  // Ajuste a URL base da sua API se for diferente
-  private apiUrl = 'https://localhost:7283/api/Course';
+    private apiUrl = `${environment.apiUrlv1}Course`;
 
   constructor(private http: HttpClient) { }
 
@@ -16,13 +17,13 @@ export class CourseService {
    * Busca a lista de cursos do backend.
    */
   getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(`${this.apiUrl}/courses`);
+    return this.http.get<Course[]>(`${this.apiUrl}`);
   }
 
   /**
    * Exclui um curso pelo ID.
    */
   deleteCourse(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/remove-course?id=${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/remove?id=${id}`);
   }
 }

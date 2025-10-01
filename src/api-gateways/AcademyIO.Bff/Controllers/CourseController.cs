@@ -1,6 +1,7 @@
 ﻿using AcademyIO.Bff.Models;
 using AcademyIO.Bff.Services;
 using AcademyIO.WebAPI.Core.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademyIO.Bff.Controllers
@@ -17,6 +18,7 @@ namespace AcademyIO.Bff.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("courses")]
         public async Task<IActionResult> GetAll()
         {

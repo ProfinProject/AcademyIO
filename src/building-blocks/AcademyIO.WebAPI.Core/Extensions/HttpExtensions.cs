@@ -11,39 +11,29 @@ namespace AcademyIO.WebAPI.Core.Extensions
     {
         public static IHttpClientBuilder AllowSelfSignedCertificate(this IHttpClientBuilder builder)
         {
-            if (builder == null)
-            {
-                throw new ArgumentNullException(nameof(builder));
-            }
+            ArgumentNullException.ThrowIfNull(builder);
 
-            return builder.ConfigureHttpMessageHandlerBuilder(b =>
-            {
-                b.PrimaryHandler = ConfigureClientHandler();
-            });
+            return builder.ConfigurePrimaryHttpMessageHandler(_ => ConfigureClientHandler());
         }
 
         public static HttpClientHandler ConfigureClientHandler()
         {
-
             var path = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Path");
             var certPass = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Password");
 
             if (path.IsPresent())
-            {
                 return new HttpClientHandler
                 {
                     ClientCertificateOptions = ClientCertificateOption.Manual,
-                    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, chain, policyErrors) =>
+                    ServerCertificateCustomValidationCallback = (_, cert, chain, _) =>
                     {
                         chain.ChainPolicy.TrustMode = X509ChainTrustMode.CustomRootTrust;
-                        chain.ChainPolicy.CustomTrustStore.Add(new X509Certificate2(File.ReadAllBytes(path), certPass));
+                        var certificate = new X509Certificate2(File.ReadAllBytes(path!), certPass);
+                        chain.ChainPolicy.CustomTrustStore.Add(certificate);
 
                         return chain.Build(cert);
-
-
                     }
                 };
-            }
 
             return new HttpClientHandler
             {
