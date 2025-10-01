@@ -41,8 +41,11 @@
                     <small class="text-muted">Preço atual</small>
                   </div>
                   <div class="d-flex gap-2 mt-3 mt-lg-0">
-                    <a [routerLink]="['/ementa']" [queryParams]="{ curso: course.id }" class="btn btn-primary btn-sm">
-                      Acessar Curso <i class="fas fa-arrow-right ms-1"></i>
+                    <a [routerLink]="['/gerenciar-aulas', course.id]" class="btn btn-primary btn-sm">
+                      Gerenciar Aulas <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                    <a [routerLink]="['/cadastrar-aula', course.id]" class="btn btn-outline-secondary btn-sm">
+                      <i class="fas fa-plus me-1"></i> Adicionar Aula
                     </a>
                   </div>
                 </div>
