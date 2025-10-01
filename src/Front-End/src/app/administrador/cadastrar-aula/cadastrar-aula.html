@@ -1,10 +1,14 @@
 <header class="bg-light border-bottom">
   <div class="container py-3">
-    <h1 class="h3 fw-bold text-dark mb-0">
-      <i class="fas fa-video me-2" style="color: #02a102;"></i>
-      Nova Aula
-    </h1>
-    <p class="text-muted mb-0">Curso: Desenvolvimento Web com Angular</p>
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+      <h1 class="h4 fw-bold text-dark mb-0">
+        <i class="fas fa-video me-2" style="color: #02a102;"></i>
+        Cadastrar Nova Aula
+      </h1>
+      <a routerLink="/painel-administrador" class="btn btn-outline-secondary btn-sm">
+        <i class="fas fa-arrow-left me-1"></i> Voltar ao Painel
+      </a>
+    </div>
   </div>
 </header>
 
@@ -13,64 +17,51 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="card border-0 shadow-sm rounded-3">
-          <div class="card-body p-4">
-            <form>
+          <div class="card-body p-4 p-md-5">
+            <form (ngSubmit)="onSubmit()" #lessonForm="ngForm">
               <div class="mb-4">
-                <label for="modulo" class="form-label fw-medium">Módulo</label>
-                <select class="form-select form-select-lg" id="modulo">
-                  <option value="">Selecione um módulo</option>
-                  <option value="1" selected>Módulo 1: Introdução ao Angular</option>
-                  <option value="2">Módulo 2: Componentes e Templates</option>
-                  <option value="3">Módulo 3: Rotas e Navegação</option>
+                <label for="course" class="form-label fw-medium">Curso <span class="text-danger">*</span></label>
+                <select id="course" name="course" class="form-select" [(ngModel)]="lesson.courseId" required>
+                  <option [ngValue]="undefined">Selecione um curso</option>
+                  @for (course of (courses$ | async); track course.id) {
+                  <option [value]="course.id">{{ course.name }}</option>
+                  }
                 </select>
               </div>
 
               <div class="mb-4">
-                <label for="titulo" class="form-label fw-medium">Título da aula <span class="text-danger">*</span></label>
-                <input type="text" class="form-control form-control-lg" id="titulo" placeholder="Ex: Configurando o ambiente">
+                <label for="name" class="form-label fw-medium">Título da aula <span class="text-danger">*</span></label>
+                <input type="text" id="name" name="name" class="form-control" [(ngModel)]="lesson.name" required>
               </div>
 
               <div class="mb-4">
-                <label for="descricao" class="form-label fw-medium">Descrição curta</label>
-                <textarea class="form-control" id="descricao" rows="2" placeholder="O que o aluno vai aprender nesta aula?"></textarea>
-              </div>
-
-              <div class="row mb-4">
-                <div class="col-md-6">
-                  <label for="duracao" class="form-label fw-medium">Duração (mm:ss) <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="duracao" placeholder="Ex: 18:45">
-                </div>
-                <div class="col-md-6">
-                  <label for="tipo" class="form-label fw-medium">Tipo de aula <span class="text-danger">*</span></label>
-                  <select class="form-select" id="tipo">
-                    <option value="video" selected>Vídeo</option>
-                    <option value="material">Material (PDF, texto)</option>
-                    <option value="exercicio">Exercício prático</option>
-                    <option value="quiz">Quiz</option>
-                  </select>
-                </div>
+                <label for="subject" class="form-label fw-medium">Descrição (Assunto)</label>
+                <textarea id="subject" name="subject" class="form-control" rows="3" [(ngModel)]="lesson.subject"
+                  required></textarea>
               </div>
 
               <div class="mb-4">
-                <label for="linkVideo" class="form-label fw-medium">Link do vídeo (YouTube, Vimeo, etc.)</label>
-                <input type="url" class="form-control" id="linkVideo" placeholder="https://youtube.com/...">
+                <label for="totalHours" class="form-label fw-medium">Duração (em horas) <span
+                    class="text-danger">*</span></label>
+                <input type="number" id="totalHours" name="totalHours" class="form-control"
+                  [(ngModel)]="lesson.totalHours" required min="0" step="0.1">
               </div>
 
-              <div class="mb-4">
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="disponivel" checked>
-                  <label class="form-check-label fw-medium" for="disponivel">
-                    Disponível para os alunos
-                  </label>
-                </div>
-              </div>
+              @if (errorMessage) {
+              <div class="alert alert-danger">{{ errorMessage }}</div>
+              }
+              @if (successMessage) {
+              <div class="alert alert-success">{{ successMessage }}</div>
+              }
 
-              <div class="d-flex justify-content-between mt-4">
-                <a href="/admin/aulas" class="btn btn-outline-secondary px-4">
-                  <i class="fas fa-arrow-left me-2"></i> Voltar
-                </a>
-                <button type="submit" class="btn px-4" style="background: linear-gradient(135deg, #02a102, #017a01); color: white; font-weight: 600; border: none;">
-                  <i class="fas fa-save me-2"></i> Salvar Aula
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary" [disabled]="isLoading || lessonForm.invalid">
+                  @if (isLoading) {
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  <span class="ms-2">Salvando...</span>
+                  } @else {
+                  <span>Salvar Aula</span>
+                  }
                 </button>
               </div>
             </form>

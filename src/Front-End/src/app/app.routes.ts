@@ -13,9 +13,7 @@ import { CadastrarCurso } from './administrador/cadastrar-curso/cadastrar-curso'
 import { CadastrarAula } from './administrador/cadastrar-aula/cadastrar-aula';
 import { GerenciarAulas } from './administrador/gerenciar-aulas/gerenciar-aulas';
 import { MeusCursos } from './administrador/meus-cursos/meus-cursos';
-
 import { authGuard } from './core/auth/guards/auth.guard';
-
 
 export const routes: Routes = [
   { path: 'home', component: Home }
@@ -27,8 +25,8 @@ export const routes: Routes = [
   , { path: 'ementa', component: Ementa }
 
   , { path: 'painel-administrador', component: PainelAdministrativo, canActivate: [authGuard] }
-  , { path: 'cadastrar-curso', component: CadastrarCurso, canActivate: [authGuard] }
-  , { path: 'cadastrar-aula', component: CadastrarAula, canActivate: [authGuard] }
+  , { path: 'cadastrar-curso', component: CadastrarCurso, canActivate: [authGuard] } // Rota para criar um novo curso
+  , { path: 'cadastrar-aula', component: CadastrarAula, canActivate: [authGuard] } // Rota para adicionar aula a um curso existente
   , { path: 'gerenciar-aulas', component: GerenciarAulas, canActivate: [authGuard] }
   , { path: 'meus-cursos', component: MeusCursos, canActivate: [authGuard] }
   , { path: 'not-found', component: NotFound }
