@@ -34,7 +34,7 @@ export class AuthService {
       credentials,
       httpOptions
     ).pipe(
-      timeout(5000), // 5 second timeout
+      timeout(50000), // 50 second timeout
       tap((response) => {
         console.log('Login response:', response);
         if (response?.body?.accessToken) {
@@ -115,7 +115,7 @@ export class AuthService {
     } else if (error.status === 400) {
       // Para 400, a mensagem extraída do corpo do erro costuma ser a mais útil.
       // Se não houver uma mensagem específica, usamos um texto padrão.
-      errorMessage = error.error?.title || 'Dados inválidos. Por favor, verifique as informações fornecidas.';
+      errorMessage = error.error.errors.Messages.join(' | ');
     } else if (error.error instanceof ErrorEvent) {
       errorMessage = `Client error: ${error.error.message}`;
     }
