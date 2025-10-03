@@ -76,7 +76,7 @@ namespace AcademyIO.Auth.API.Controllers
         }
 
         [HttpPost("auth")]
-        public async Task<ActionResult> Login(LoginUserViewModel userLogin)
+        public async Task<ActionResult<LoginResponseViewModel>> Login(LoginUserViewModel userLogin)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 

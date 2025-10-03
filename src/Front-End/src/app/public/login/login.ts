@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { LoginCredentials } from '../../core/auth/models/auth.interfaces';
+import { AccountService } from './account.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  providers: [AccountService], 
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
@@ -22,6 +24,7 @@ export class Login {
 
   constructor(
     private authService: AuthService,
+    private accountService: AccountService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -30,14 +33,16 @@ export class Login {
     this.errorMessage = '';
     this.isLoading = true;
     this.authService.login(this.credentials).subscribe({
-      next: () => {
+      next: (response) => {
         this.isLoading = false;
-        // Verifica se há
-        //  uma URL de retorno nos parâmetros da rota
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-        // Redireciona para a URL de retorno ou para o painel do administrador como padrão
-        this.router.navigateByUrl(returnUrl || '/painel-administrador');
+  
+        this.accountService.LocalStorage.saveLocalDataUser(response);
 
+        if(this.accountService.LocalStorage.isAdmin())
+          this.router.navigateByUrl(returnUrl || '/painel-administrador');
+        else
+          this.router.navigateByUrl(returnUrl || '/home');
       },
       error: (err) => {
         this.isLoading = false;
