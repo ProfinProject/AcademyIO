@@ -1,12 +1,17 @@
 import { HttpHeaders, HttpErrorResponse } from "@angular/common/http";
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { throwError } from "rxjs";
 import { environment } from '../../environments/environment';
 import { LocalStorageUtils } from '../Utils/localstorage';
 
 export abstract class BaseService {
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+        this.LocalStorage = new LocalStorageUtils(this.platformId);
+    }
 
+  public LocalStorage: LocalStorageUtils;
     protected UrlServiceV1: string = environment.apiUrlv1;
-    public LocalStorage = new LocalStorageUtils();
+
 
     protected getHeaderJson() {
         return {

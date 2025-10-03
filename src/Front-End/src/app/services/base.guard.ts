@@ -1,13 +1,16 @@
 import { Router, ActivatedRouteSnapshot, CanDeactivate } from '@angular/router';
 import { LocalStorageUtils } from '../Utils/localstorage';
 import { FormBaseComponent } from '../base-components/form-base.component';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 
 
 export abstract class BaseGuard implements CanDeactivate<FormBaseComponent> {
+     protected localStorageUtils: LocalStorageUtils;
 
-    protected localStorageUtils = new LocalStorageUtils();
-
-    constructor(protected router: Router) { }
+    constructor(protected router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
+        // Agora passamos o platformId corretamente
+        this.localStorageUtils = new LocalStorageUtils(this.platformId);
+    }
 
     canDeactivate(component: FormBaseComponent) {
         if (component.unsavedChanges) {

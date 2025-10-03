@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, PLATFORM_ID, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './models/user';
 
@@ -9,8 +9,13 @@ import { registerUser } from './models/registerUser';
 
 @Injectable()
 export class AccountService extends BaseService {
+      constructor(
+            private http: HttpClient,
+            @Inject(PLATFORM_ID) platformId: Object
+        ) {
+            super(platformId); // ✅ Passando corretamente
+        }
 
-    constructor(private http: HttpClient) { super(); }
 
     register(user: registerUser): Observable<User> {
         let response = this.http

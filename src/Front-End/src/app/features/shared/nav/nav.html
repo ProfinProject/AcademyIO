@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light nav-menu">
   <div class="container">
-   <a class="navbar-brand" href=""  routerLink="/" routerLinkActive="active" >
+
+      <a class="navbar-brand" href=""  routerLink="/" routerLinkActive="active" >
        <b>  <i class="fa-solid fa-microchip text-cor-padrao"></i>
          Academy<strong><span class="text-cor-padrao">IO</span></strong></b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,42 +31,55 @@
         </li>
       </ul>
 
-  
+      <!-- Botões à direita -->
       <div class="d-flex ms-auto align-items-center gap-2">
-        <!-- Botão Entrar -->
-        <a href="/login"
-           class="btn rounded-pill px-3 py-2 d-flex align-items-center"
-           style="
-             color: #02a102;
-             background-color: transparent;
-             border: 2px solid #02a102;
-             font-weight: 600;
-             transition: all 0.25s ease;
-             box-shadow: 0 2px 5px rgba(2, 161, 2, 0.15);
-           "
-           onmouseover="this.style.boxShadow='0 4px 10px rgba(2, 161, 2, 0.25)'; this.style.transform='translateY(-2px)';"
-           onmouseout="this.style.boxShadow='0 2px 5px rgba(2, 161, 2, 0.15)'; this.style.transform='translateY(0)';">
+
+        <!-- Se NÃO estiver logado -->
+      <ng-container *ngIf="!isLoggedIn">
+         <a href="/login"
+            class="btn rounded-pill px-3 py-2 d-flex align-items-center"
+            style="
+              color: #02a102;
+              background-color: transparent;
+              border: 2px solid #02a102;
+              font-weight: 600;
+              transition: all 0.25s ease;
+              box-shadow: 0 2px 5px rgba(2, 161, 2, 0.15);
+            "
+            onmouseover="this.style.boxShadow='0 4px 10px rgba(2, 161, 2, 0.25)'; this.style.transform='translateY(-2px)';"
+            onmouseout="this.style.boxShadow='0 2px 5px rgba(2, 161, 2, 0.15)'; this.style.transform='translateY(0)';">
           <i class="fas fa-arrow-right-to-bracket me-1"></i>
           Entrar
         </a>
 
 
         <a href="/registrar"
-           class="btn rounded-pill px-3 py-2 d-flex align-items-center text-white"
-           style="
-             background: linear-gradient(135deg, #02a102, #017a01);
-             border: none;
-             font-weight: 600;
-             transition: all 0.25s ease;
-             box-shadow: 0 3px 8px rgba(2, 161, 2, 0.3);
-           "
-           onmouseover="this.style.boxShadow='0 5px 15px rgba(2, 161, 2, 0.4)'; this.style.transform='translateY(-2px)';"
-           onmouseout="this.style.boxShadow='0 3px 8px rgba(2, 161, 2, 0.3)'; this.style.transform='translateY(0)';">
+            class="btn rounded-pill px-3 py-2 d-flex align-items-center text-white"
+            style="
+              background: linear-gradient(135deg, #02a102, #017a01);
+              border: none;
+              font-weight: 600;
+              transition: all 0.25s ease;
+              box-shadow: 0 3px 8px rgba(2, 161, 2, 0.3);
+            "
+            onmouseover="this.style.boxShadow='0 5px 15px rgba(2, 161, 2, 0.4)'; this.style.transform='translateY(-2px)';"
+            onmouseout="this.style.boxShadow='0 3px 8px rgba(2, 161, 2, 0.3)'; this.style.transform='translateY(0)';">
           <i class="fas fa-user-plus me-1"></i>
           Cadastrar
         </a>
-      </div>
+      </ng-container>
+        <!-- Se estiver logado -->
+        <ng-container *ngIf="isLoggedIn">
+          <span class="me-2">Olá, {{ userEmail }}</span>
+          <button class="btn btn-outline-danger btn-sm" (click)="logout()">Logout</button>
 
+          <!-- Se for admin -->
+          <ng-container *ngIf="isAdmin">
+            <a href="/painel-administrador" class="btn btn-outline-primary btn-sm ms-2">Admin</a>
+          </ng-container>
+        </ng-container>
+
+      </div>
     </div>
   </div>
 </nav>
