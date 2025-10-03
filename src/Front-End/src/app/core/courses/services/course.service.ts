@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, PLATFORM_ID, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -12,7 +12,12 @@ import { BaseService } from '../../../services/base.service';
 export class CourseService extends BaseService {
   private apiUrl = 'https://localhost:7283/api/Course';
 
-  constructor(private http: HttpClient) { super(); }
+    constructor(
+            private http: HttpClient,
+            @Inject(PLATFORM_ID) platformId: Object
+        ) {
+            super(platformId); // ✅ Passando corretamente
+        }
 
   /**
    * Busca a lista de cursos do backend.
