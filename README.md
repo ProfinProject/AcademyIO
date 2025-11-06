@@ -1,148 +1,196 @@
-🏦 **AcademyIO - Plataforma de Educação Online**
+## 🏦 AcademyIO – Plataforma de Educação Online
 
-Bem-vindo ao AcademyIO, um projeto desenvolvido no **MBA DevXpert Full Stack .NET** para o módulo 4. O AcademyIO é uma solução inovadora para Educação Online, permitindo que os usuários acompanhem seus cursos, e certificados de maneira intuitiva através de uma API RESTful robusta.  
+Bem-vindo ao **AcademyIO**, um projeto desenvolvido no **MBA DevXpert Full Stack .NET** (Módulo 4) com foco em arquitetura moderna, escalabilidade e boas práticas de desenvolvimento.  
+O AcademyIO é uma plataforma de ensino digital que permite aos usuários gerenciar cursos, matrículas, pagamentos e certificados por meio de uma **API RESTful robusta, segura e bem documentada**.
 
-🚀 **Sobre o Projeto**
+---
 
-A plataforma foi criada para proporcionar uma experiência fluida e segura no controle dos cursos e matricula, oferecendo:  
-- Registro de cursos   
-- Pagamento e faturamento 📊  
-- Autenticação segura via JWT 🔒  
-- Registro e pesquisa de alunos por curso 🔍  
+### 🚀 Sobre o Projeto
 
+Construído com uma abordagem baseada em microsserviços e princípios de **Domain-Driven Design (DDD)**, o AcademyIO oferece uma experiência integrada e segura para alunos e administradores, com funcionalidades como:
 
-👥**Equipe de Desenvolvimento**
+- 📚 **Cadastro e gestão de cursos**
+- 💳 **Processamento de pagamentos e faturamento**
+- 🔒 **Autenticação e autorização seguras com JWT e ASP.NET Core Identity**
+- 👥 **Registro, listagem e busca de alunos por curso**
+- 📄 **Emissão e acompanhamento de certificados**
 
-- Fabiano Marcolin Maciel  
-- Breno Francisco Morais  
-- Caio Gustavo Rodrigues  
-- Luis Felipe da Silva Sousa  
-- Thiago Albuquerque Severo  
-- Viliane Oliveira  
+---
 
-🛠️ **Tecnologias Utilizadas**  
-Back-End:  
-- C#  
-- ASP.NET Core Web API (.NET 8.0)  
-- Entity Framework Core (EF Core 8.0.10)  
-- SQL Server / SQLite  
-- ASP.NET Core Identity + JWT  
+### 👥 Equipe de Desenvolvimento
+
+- Fabiano Marcolin Maciel
+- Breno Francisco Morais
+- Caio Gustavo Rodrigues
+- Luis Felipe da Silva Sousa
+- Thiago Albuquerque Severo
+- Viliane Oliveira
+
+---
+
+### 🛠️ Tecnologias Utilizadas
+
+**Back-End:**
+
+- C# 12
+- ASP.NET Core Web API (.NET 8.0)
+- Entity Framework Core 8.0.10
+- SQL Server / SQLite
+- ASP.NET Core Identity + JWT
+- RabbitMQ (comunicação assíncrona via message bus)
 
 **Documentação:**
-Swagger 📄
 
-📂 **Estrutura do Projeto**  
+- Swagger/OpenAPI – disponível em `http://localhost:5005/swagge`
 
-src/<br>
- ├── ApiGateways/<br>
- │    └── **AcademyIO.Bff/**              # API Gateway (Backend For Frontend)<br>
- │<br>
- ├── BuildingBlocks/                      # Blocos reutilizáveis<br>
- │    ├── Core/<br>
- │    │    └── **AcademyIO.Core/**        # Entidades base, interfaces, validações<br>
- │    ├── MessageBus/<br>
- │    │    └── **AcademyIO.MessageBus/**  # Comunicação assíncrona entre serviços (mensageria)<br>
- │    └── Services/<br>
- │         └── **AcademyIO.WebAPI.Core/** # Middlewares, Identity, extensões para APIs<br>
- │<br>
- ├── Services/                            # Microsserviços da aplicação<br>
- │    ├── Auth/<br>
- │    │    └── **AcademyIO.Auth.API/**    # Serviço de Autenticação e Autorização (JWT, Identity)<br>
- │    ├── Courses/<br>
- │    │    └── **AcademyIO.Courses.API/** # Serviço de Cursos<br>
- │    ├── Payments/<br>
- │    │    └── **AcademyIO.Payments.API/**# Serviço de Pagamentos<br>
- │    └── Students/<br>
- │         └── **AcademyIO.Students.API/**# Serviço de Alunos<br>
- │<br>
- ├── **Tests/**                           # Projetos de teste automatizados<br>
- │<br>
- └── **Web/**                             # Frontend
+### 📂 Estrutura do Projeto
 
+```
+academyio/
+├── 📁 src/
+│   ├── 📁 ApiGateways/
+│   │   └── 📁 AcademyIO.Bff/              # 🌉 API Gateway (Backend for Frontend)
+│   │
+│   ├── 📁 BuildingBlocks/                 # 🧱 Blocos reutilizáveis
+│   │   ├── 📁 Core/
+│   │   │   └── 📁 AcademyIO.Core/         # 📐 Entidades base, interfaces, validações
+│   │   ├── 📁 MessageBus/
+│   │   │   └── 📁 AcademyIO.MessageBus/   # 📨 Comunicação assíncrona (RabbitMQ)
+│   │   └── 📁 Services/
+│   │       └── 📁 AcademyIO.WebAPI.Core/  # ⚙️ Middlewares, Identity, extensões comuns
+│   │
+│   ├── 📁 Services/                        # 🧩 Microsserviços independentes
+│   │   ├── 📁 Auth/
+│   │   │   └── 📁 AcademyIO.Auth.API/     # 🔐 Autenticação e autorização (JWT + Identity)
+│   │   ├── 📁 Courses/
+│   │   │   └── 📁 AcademyIO.Courses.API/  # 📚 Gestão de cursos
+│   │   ├── 📁 Payments/
+│   │   │   └── 📁 AcademyIO.Payments.API/ # 💳 Processamento de pagamentos
+│   │   └── 📁 Students/
+│   │       └── 📁 AcademyIO.Students.API/ # 👥 Gestão de alunos e matrículas
+│   │
+│   ├── 📁 Tests/                           # 🧪 Projetos de testes automatizados
+│   │
+│   └── 📁 Web/                             # 🌐 Aplicação frontend (Angular)
+│
+├── 📄 README.md                            # 📖 Documentação principal
+├── 📄 FEEDBACK.md                          # 💬 Feedback do instrutor
+└── 📄 .gitignore                           # 🚫 Arquivos ignorados pelo Git
 
+```
  
-README.md             # Documentação do projeto  
-FEEDBACK.md           # Consolidação de feedbacks  
-.gitignore            # Configuração do Git  
-------------------------------------------------------------
+ 📄 FEEDBACK.md    💬 Feedback do instrutor
+## ▶️ Como Executar o Projeto
 
-▶️ **Como Executar o Projeto**  
-📌 
-.NET SDK 8.0 ou superior  
-SQL Server ou SQLite  
-Visual Studio 2022 ou VS Code  
-Git
+### 📌 Pré-requisitos
 
-💻 **Passos para Execução**
+- [.NET SDK 8.0 ou superior](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [SQL Server ou SQLite](https://www.sqlite.org/index.html)
+- [Git](https://git-scm.com/)
+- [Node.js (v18 ou superior)](https://nodejs.org/) — necessário para o frontend Angular
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (com WSL2 habilitado, se estiver no Windows) — necessário para o RabbitMQ e Portainer
+### 💻 Passos para Execução
 
-1️⃣ **Clone o Repositório:**  
+#### 1️⃣ Clone o Repositório
+
+```
 git clone https://github.com/ProfinProject/AcademyIO.git
-cd AcademyIO  
+```
 
-2️⃣ **Configuração do Banco de Dados:**  
-No arquivo appsettings.json, configure a string de conexão para SQL Server ou SQLite.  
-Execute o projeto para que a configuração do Seed crie e popule o banco automaticamente.
+#### 2️⃣ Configure o Banco de Dados
 
-3️⃣ **Executar as APIs (.NET 8.0):**  
--Startup multiple projects escolhendo as APIs: Auth, Course, Student, Payment, e o BFF para startar. (Você precisa configurar a parte referente ao RabbitMQ explicada abaixo)
+- Acesse os arquivos `appsettings.json` dos microsserviços (`Auth`, `Courses`, `Payments`, `Students`) e do `BFF`.
+- Defina a string de conexão para **SQL Server** ou **SQLite**, conforme sua preferência.
+- Ao executar o projeto pela primeira vez, o **Entity Framework Core** aplicará as migrações e executará o **Seed** automaticamente.
+#### 3️⃣ Suba os Serviços de Mensageria (RabbitMQ)
 
-
-🔑 **Configuração de Segurança**  
-Autenticação JWT: Configurada no appsettings.json.  
-Migração do Banco: Gerenciada pelo EF Core, com Seed de dados automático.  
-
-📜 **Documentação da API**  
-A API está documentada via Swagger: 📌 Acesse em: http://localhost:5005/swagger
-
-📬 Mensageria — Setup com Docker, Portainer e RabbitMQ
-✅ Pré-requisitos
-
-🐳 Docker Desktop para Windows (com WSL2 habilitado)
-Download: https://www.docker.com/products/docker-desktop/
-
-🧭 (Opcional) Portainer — painel para gerenciar containers
-
-O que é? 🖥️ O Portainer é um painel web para administrar o Docker: criar/gerenciar containers, imagens, volumes e redes, visualizar logs e status — ótimo para acompanhar o RabbitMQ em desenvolvimento.
-
-💠 PowerShell
-docker stop portainer 2>$null
-docker rm portainer 2>$null
-docker volume create portainer_data
-docker run -d `
-  -p 8000:8000 `
-  -p 9443:9443 `
-  --name portainer `
-  --restart=always `
-  -v /var/run/docker.sock:/var/run/docker.sock `
-  -v portainer_data:/data `
-  portainer/portainer-ce:latest
-
-🧱 CMD (uma linha)
--docker stop portainer >nul 2>&1 && docker rm portainer >nul 2>&1 && docker volume create portainer_data && docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-
-
-🌐 Acesse: https://localhost:9443
-
-🔐 No primeiro acesso, crie o usuário admin. Senha sugerida: Portainer1234! (altere fora do ambiente local).
-
-🐰 RabbitMQ — broker de mensagens (com painel)
-
-O que é? 📨 O RabbitMQ é um message broker (AMQP). Ele recebe mensagens em exchanges, roteia para filas e permite que consumidores as processem de forma assíncrona. A imagem rabbitmq:management inclui o painel web.
-
-▶️ Subir o container
+```
 docker run -d --hostname rabbit-host --name rabbit-academyio -p 15672:15672 -p 5672:5672 rabbitmq:management
+```
 
-
-📊 Painel (Management): http://localhost:15672/
-
-🔑 login: guest — senha: guest
+- Painel Web: [http://localhost:15672](http://localhost:15672/)
+	- Usuário: `guest`
+	- Senha: `guest`
+_(Opcional)_ Se quiser gerenciar os containers visualmente.
 
 🔌 Conexão AMQP (aplicação): amqp://guest:guest@localhost:5672/
+### 4️⃣ Execute as APIs (.NET 8.0)
+O projeto é composto por vários microsserviços e um **BFF (Backend for Frontend)**. Você pode executá-los de duas formas:
 
-⚠️ Produção: crie um usuário próprio e evite guest/guest.
+#### 🖥️ **Opção 1: Via Visual Studio (Múltiplos Projetos de Inicialização)**
 
-📌 **Considerações Finais** 
-Este projeto faz parte de um curso acadêmico e não aceita contribuições externas. Para dúvidas ou feedbacks, utilize a aba Issues do repositório. O arquivo FEEDBACK.md contém avaliações do instrutor e deve ser modificado apenas por ele.
+1. Abra a solução `AcademyIO.sln` no **Visual Studio 2022**.
+2. Clique com o botão direito na solução no **Solution Explorer** e selecione **Propriedades**.
+3. Em **Common Properties > Startup Project**, escolha **Multiple startup projects**.
+4. Defina a ação **Start** para os seguintes projetos:
+	- `AcademyIO.Auth.API`
+	- `AcademyIO.Courses.API`
+	- `AcademyIO.Payments.API`
+	- `AcademyIO.Students.API`
+	- `AcademyIO.Bff`
+5. Clique em **OK** e pressione **F5** ou o botão **Iniciar**.
 
-🚀 Gostou do projeto? Deixe uma estrela ⭐ no repositório!  
-🔗 Conecte-se com a equipe no LinkedIn! #dotnet #fullstack #finanças #fabianoIO #DDD #CQRS #webdevelopment
+⚠️ Certifique-se de que o **RabbitMQ** está rodando (veja seção 3 — Mensageria).
+
+A documentação Swagger estará disponível em:  
+🔗 [http://localhost:5005/swagger](http://localhost:5005/swagger)
+
+#### 💻 **Opção 2: Via CLI (Command Line Interface)**
+
+Se preferir rodar os serviços manualmente pelo terminal (útil em ambientes sem Visual Studio ou em Linux/macOS/WSL), siga os passos:
+
+1. Abra um terminal na raiz do projeto (`AcademyIO`).
+2.  Execute **cada microsserviço em um terminal separado** com os comandos abaixo:
+
+⚠️ Executar um comando por Terminal
+
+```
+# Serviço de Autenticação
+dotnet run --project src/Services/AcademyIO.Auth.API/AcademyIO.Auth.API.csproj
+
+# Serviço de Cursos
+dotnet run --project src/services/AcademyIO.Courses.API/AcademyIO.Courses.API.csproj
+
+# Serviço de Pagamentos
+dotnet run --project src/Services/AcademyIO.Payments.API/AcademyIO.Payments.API.csproj
+
+# Serviço de Alunos
+dotnet run --project src/Services/AcademyIO.Students.API/AcademyIO.Students.API.csproj
+
+# API Gateway (BFF)
+dotnet run  --project src/api-gateways/AcademyIO.Bff/AcademyIO.Bff.csproj
+```
+
+Ambas as abordagens exigem que:
+- O **banco de dados** esteja configurado corretamente (SQL Server ou SQLite).
+- O **RabbitMQ** esteja em execução (caso utilize funcionalidades baseadas em mensageria).
+
+#### 5️⃣ Execute o Frontend (Angular) Terminal
+
+Pasta do Projeto:
+```
+cd src/Front-End
+```
+
+Instalar Dependências:
+```
+npm install --legacy-peer-deps
+```
+
+Inicializar Aplicação:
+```
+npm start
+```
+
+A aplicação frontend estará disponível em:  
+🌐 [http://localhost:4200](http://localhost:4200/)
+
+## 👥 Credenciais de Acesso
+
+| Perfil         | Nome        | E-mail                 | Senha       |
+|----------------|-------------|------------------------|-------------|
+| Administrador  | Admin       | admin@academyio.com    | Teste@123   |
+| Aluno          | Student1    | aluno1@academyio.com   | Teste@123   |
+| Aluno          | Student2    | aluno2@academyio.com   | Teste@123   |
+
+📌 **Considerações Finais** Este projeto faz parte de um curso acadêmico e não aceita contribuições externas. Para dúvidas ou feedbacks, utilize a aba Issues do repositório. O arquivo FEEDBACK.md contém avaliações do instrutor e deve ser modificado apenas por ele.
