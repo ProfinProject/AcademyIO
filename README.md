@@ -146,19 +146,19 @@ Se preferir rodar os serviços manualmente pelo terminal (útil em ambientes sem
 
 ```
 # Serviço de Autenticação
-dotnet run --project src/Services/AcademyIO.Auth.API/AcademyIO.Auth.API.csproj
+dotnet run --project src/Services/AcademyIO.Auth.API/AcademyIO.Auth.API.csproj --launch-profile "https"
 
 # Serviço de Cursos
-dotnet run --project src/services/AcademyIO.Courses.API/AcademyIO.Courses.API.csproj
+dotnet run --project src/services/AcademyIO.Courses.API/AcademyIO.Courses.API.csproj --launch-profile "https"
 
 # Serviço de Pagamentos
-dotnet run --project src/Services/AcademyIO.Payments.API/AcademyIO.Payments.API.csproj
+dotnet run --project src/Services/AcademyIO.Payments.API/AcademyIO.Payments.API.csproj --launch-profile "https"
 
 # Serviço de Alunos
-dotnet run --project src/Services/AcademyIO.Students.API/AcademyIO.Students.API.csproj
+dotnet run --project src/Services/AcademyIO.Students.API/AcademyIO.Students.API.csproj --launch-profile "https"
 
 # API Gateway (BFF)
-dotnet run  --project src/api-gateways/AcademyIO.Bff/AcademyIO.Bff.csproj
+dotnet run  --project src/api-gateways/AcademyIO.Bff/AcademyIO.Bff.csproj --launch-profile "https"
 ```
 
 Ambas as abordagens exigem que:
